@@ -17,6 +17,8 @@ In particle physics, people smash particles together at very high speeds to see 
   Fig. 1: ATLAS event display of two b-jets and two electrons.
 </div>
 
+<br><br>
+
 <div align="justify">
 However, seeing new and exciting particles are rare. So we have to look at a lot of events (collisions) in the hope that we might see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data, which can be hard to analyze. To classify these events, physicists have come up with their own algorithms to produce high-level engineered variables from the images.
 </div>
@@ -31,6 +33,8 @@ This has led to the application of machine learning in particle physics, specifi
 <div align="center">
   Fig. 2: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables. This plot is taken from Ref. 1.
 </div>
+
+<br><br>
 
 <div align="justify">
 However, neural networks are tricky. They work well, but there are many open questions about them. Why do they work so well? What is the neural net learning from the data? Why is it learning that particular thing?
