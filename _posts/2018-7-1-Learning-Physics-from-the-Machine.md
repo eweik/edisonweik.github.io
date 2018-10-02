@@ -21,6 +21,8 @@ This has led to the application of machine learning in particle physics, specifi
 
 <div align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png" width="400">
+</div>
+<div align="center">
   <small>**Figure 2**: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables. This plot is taken from Reference 1.</small>
 </div>
 
