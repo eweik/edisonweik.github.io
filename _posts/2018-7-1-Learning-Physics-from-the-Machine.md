@@ -5,7 +5,7 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-o no
+o no no
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
@@ -18,7 +18,7 @@ In particle physics, people smash particles together at very high speeds to see 
        width="800"
        class="center">](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2012-161/)
 <div align="center">
-  Fig. 1: ATLAS event display of two b-jets and two electrons.
+       <b>Fig. 1</b>: ATLAS event display of two b-jets and two electrons.
 </div>
 
 <br>
@@ -37,7 +37,7 @@ This has led to the application of machine learning in particle physics, specifi
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png" width="400">
 </div>
 <div align="justify" width="70%">
-  Fig. 2: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables. This plot is taken from Ref. 1.
+  <b>Fig. 2</b>: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables. This plot is taken from Ref. 1.
 </div>
 
 <br>
