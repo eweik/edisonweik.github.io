@@ -5,7 +5,7 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-what
+what what
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
@@ -18,13 +18,13 @@ In particle physics, people smash particles together at very high speeds to see 
   Fig. 1: ATLAS event display of two b-jets and two electrons.
 </div>
 
-<br>
+&nbsp
 
 <div align="justify">
 However, seeing new and exciting particles are rare. So we have to look at a lot of events (collisions) in the hope that we might see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data, which can be hard to analyze. To classify these events, physicists have come up with their own algorithms to produce high-level engineered variables from the images.
 </div>
 
-<br>
+&nbsp
 
 <div align="justify">
 This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work, neural nets have actually outperformed high level engineered variables for tasks such as classification.
