@@ -18,15 +18,11 @@ In particle physics, people smash particles together at very high speeds to see 
   Fig. 1: ATLAS event display of two b-jets and two electrons.
 </div>
 
-&nbsp
+&nbsp;
 
 <div align="justify">
 However, seeing new and exciting particles are rare. So we have to look at a lot of events (collisions) in the hope that we might see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data, which can be hard to analyze. To classify these events, physicists have come up with their own algorithms to produce high-level engineered variables from the images.
-</div>
-
-&nbsp
-
-<div align="justify">
+       
 This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work, neural nets have actually outperformed high level engineered variables for tasks such as classification.
 </div>
 
