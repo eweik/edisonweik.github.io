@@ -5,7 +5,7 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-50
+50 first
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
@@ -36,8 +36,12 @@ This has led to the application of machine learning in particle physics, specifi
 </div>
 
 <div style="text-align:center">
-   [<img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png" 
-     width="400" />](https://arxiv.org/abs/1603.09349)
+  <figure class="sreenshot">
+    <a href="https://arxiv.org/abs/1603.09349">
+      <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png"
+        width="400">
+    </a>
+  </figure>
 </div>
 <div align="justify" width="70%">
   <b>Fig. 2</b>: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables.
