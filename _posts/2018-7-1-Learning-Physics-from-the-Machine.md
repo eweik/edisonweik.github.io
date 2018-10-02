@@ -9,8 +9,10 @@ tags:
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
 
 <figure>
-  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig1.png" width="800">
-  <figcaption> **Figure 1**: ATLAS event display of two b-jets and two electrons. </figcaption>
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig1.png" 
+       width="800"
+       class="center">
+  <figcaption> Fig 1: ATLAS event display of two b-jets and two electrons. </figcaption>
 </figure>
 
 However, seeing new and exciting particles are rare. So we have to look at a lot of events (collisions) in the hope that we might see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data, which can be hard to analyze. To classify these events, physicists have come up with their own algorithms to produce high-level engineered variables from the images.
