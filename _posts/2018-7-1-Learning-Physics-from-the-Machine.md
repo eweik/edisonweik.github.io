@@ -68,7 +68,36 @@ For this particular work, we looked at the problem of classifying jets of partic
 
 So, we want to take the information from these weights and translate it into something physicists can understand. Based on certain arguments and assumptions in quantum physics involving particle collisions which are beyond my scope, physicists can understand these jet images based on functions involving the momentum fraction in each pixel in the jet. The first three terms in this family of functions is expressed as:
 
+<br>
+</div>
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/functions.png"
+       width="200">
+</p>
+
+<br>
+
+<div align="justify">
+where the momentum fraction z_i of pixel i is:
+<br>
+</div>
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fractional_transverse_momentum.png"
+       width="200">
+</p>
+
+<br>
+
+<div align="justify">
+So essentially we want to take the information from the weights of the neural network and test its similarity to these functions. If they are similar, then perhaps the neural network is learning something related to the theory of these functions.
+
 <br><br>
 
+
+
 </div>
+
+
 
