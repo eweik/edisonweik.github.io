@@ -5,12 +5,12 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-what what
+o no
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
 
-<br>
+<br><br>
 
 </div>
 
@@ -30,7 +30,7 @@ However, seeing new and exciting particles are rare. So we have to look at a lot
 
 This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work, neural nets have actually outperformed high level engineered variables for tasks such as classification.
 
-<br>
+<br><br>
 </div>
 
 <div align="center">
@@ -49,3 +49,5 @@ However, neural networks are tricky. They work well, but there are many open que
 
 The objective of this work is to interpret the information that the neural network has learned in terms that physicists could understand. The motivation for this is to gain insight and possibly learn something new about the nature of the physics involved.
 </div>
+
+# Translating from machine to human
