@@ -29,8 +29,7 @@ However, seeing new and exciting particles are rare. So we have to look at a lot
 <br><br>
 
 This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work by 
-<a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>
-, neural nets have actually outperformed high level engineered variables for tasks such as classification.
+<a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>, neural nets have actually outperformed high level engineered variables for tasks such as classification.
 
 <br><br>
 </div>
@@ -58,3 +57,18 @@ The objective of this work is to interpret the information that the neural netwo
 </div>
 
 # Translating from machine to human
+<div align="justify">
+This is the tricky part. Taking the neural network output and translating it into something physicists can understand. 
+
+<br><br>
+
+For this particular work, we looked at the problem of classifying jets of particles using substructure information. So the neural network would take an image of the jet substructure and classify it as either signal or background. Specifically, neural networks make these decisions using a set of numbers (weights) that it learns and non-linear transformations. Thus far, physicists can not make sense out of these weights; in fact, no one, not just physicists, can really understand these weights. They just happen to work and that’s that. 
+
+<br><br>
+
+So, we want to take the information from these weights and translate it into something physicists can understand. Based on certain arguments and assumptions in quantum physics involving particle collisions which are beyond my scope, physicists can understand these jet images based on functions involving the momentum fraction in each pixel in the jet. The first three terms in this family of functions is expressed as:
+
+<br><br>
+
+</div>
+
