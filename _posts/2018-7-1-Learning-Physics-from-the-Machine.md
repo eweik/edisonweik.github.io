@@ -5,7 +5,7 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-o no no
+o no nos
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
@@ -28,14 +28,16 @@ However, seeing new and exciting particles are rare. So we have to look at a lot
 
 <br><br>
 
-This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work, neural nets have actually outperformed high level engineered variables for tasks such as classification.
+This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work by 
+<a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>
+, neural nets have actually outperformed high level engineered variables for tasks such as classification.
 
 <br><br>
 </div>
 
-<div align="center">
-  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png" width="400">
-</div>
+[<img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig2.png" 
+       width="400"
+       class="center">](https://arxiv.org/abs/1603.09349)
 <div align="justify" width="70%">
   <b>Fig. 2</b>: Signal efficiency versus background rejection (inverse of efficiency) for various classifiers such as deep neural networks trained on collision images, boosted decision trees trained on expert variables, jet mass individually, and expert variables (in conjunction with mass) designed by physicists. Clearly the machine learning technique outperform the engineered variables. This plot is taken from Ref. 1.
 </div>
