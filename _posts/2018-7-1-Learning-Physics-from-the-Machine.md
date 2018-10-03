@@ -134,6 +134,8 @@ My approach was take the set of high level engineered variables and reduce them 
 The procedure attempts to iteratively replace each of the high level engineered variables with a learned variable that captures the same classification power but minimizes the information overlap with the other variables. We first scan the list variables, selecting the one which has the largest negative impact on the classification power when it is removed from the set. This variable is then replaced by a neural network which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable. In order to maximize the independence of the new subnet output from the existing variables, the networks are trained together with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. Figure 3 depicts the structure of this first step. In the next iteration, the subnet is frozen and a second HL variable is selected for replace by a new subnet and orthogonalization process. This procedure is repeated until removing HL variables has no impact.
 </div>
 
+<br>
+
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig4.png"
        width="700">
@@ -145,5 +147,5 @@ The procedure attempts to iteratively replace each of the high level engineered 
 <br>
 
 <div align="justify">
-We found that of the six high level variables, $$m_jet$$, $$c_2^b2$$, and $$c_2^b1$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
+We found that of the six high level variables,</div> $$m_jet$$, $$c_2^b2$$, and $$c_2^b1$$ <div align="justify">(in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
 </div>
