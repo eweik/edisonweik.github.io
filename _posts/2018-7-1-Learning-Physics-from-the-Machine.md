@@ -123,7 +123,7 @@ As an example, below is table that shows between the discriminant ordering betwe
 
 # Application: Reduce and orthogonalize
 <div align="justify">
-Now there are a few different approaches our team took to generate insight regarding this problem. The first attempts to explain the gap between neural networks trained on the images and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the lost information. The second attempts to gain insight into the neural network strategy on the images by mapping it into our space of functions. In the third, we look at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore the that more deeply. (For more information on the first two approaches, see the paper.)
+Now there are a few different approaches our group took to generate insight regarding this problem. The first one attempts to explain the gap between neural networks trained on the images and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the lost information. The second attempts to gain insight into the neural network strategy on the images by mapping it into our space of functions. In the third, we look at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore the that more deeply. (For more information on the first two approaches, see the paper.)
 
 <br><br>
 
