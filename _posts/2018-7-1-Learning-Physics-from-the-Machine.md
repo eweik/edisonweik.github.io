@@ -181,6 +181,12 @@ We found that of the six high level variables,
 
 <br>
 
+<div align="justify">
+A table listing the discriminant ordering of the three orthogonalized variables and the original high level variables is shown in figure 5.
+</div>
+
+<br>
+
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/do_orthogonal.png"
        width="500">
