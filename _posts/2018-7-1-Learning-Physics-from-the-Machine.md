@@ -73,10 +73,9 @@ So, we want to take the information from these weights and translate it into som
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/functions.png"
-       width="200">
+       width="500">
 </p>
 
-<br>
 
 <div align="justify">
 where the momentum fraction z_i of pixel i is:
@@ -85,10 +84,8 @@ where the momentum fraction z_i of pixel i is:
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fractional_transverse_momentum.png"
-       width="200">
+       width="150">
 </p>
-
-<br>
 
 <div align="justify">
 So essentially we want to take the information from the weights of the neural network and test its similarity to these functions. If they are similar, then perhaps the neural network is learning something related to the theory of these functions.
