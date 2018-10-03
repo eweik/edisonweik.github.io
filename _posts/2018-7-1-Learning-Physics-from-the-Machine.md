@@ -200,7 +200,7 @@ A table listing the discriminant ordering between the three orthogonalized varia
 <div align="justify">
 I show some success in learning high level variables that can both classify and be orthogonal with the other variables. However, the results are not perfect in the sense of perfectly replicating the classifying power of the original high level variables and having zero similarity with the other variables.
 	
-<br><br>
+<br>
 </div>
 
 After learning our 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the $$\tau_1$$ showed showed no telling results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at points in the parameter space.
@@ -220,11 +220,20 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
 We see that $$ \hat{M}_{jet} $$ and $$ \hat{C}_2^{\beta=2} $$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space.
 
 <div align="justify">
-We leave the interpretation of the above results for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
+The interpretation of the above results is left for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
 </div>
 
 # Conclusion
 Power of neural networks and usefulness.
 Future work: exploring larger part of function space, exploring hidden nodes.
+<div align="justify">
+Neural networks have powerful properties that often perform better at tasks that experts are not perfect at. This is even in the case of classifying collisions of particles at high speeds, which are particularly complex. 
+	
+<br><br>
+
+I believe that neural networks can provide insight into these types of complex tasks. We showed how the output of neural networks can be interpreted for physicists to make sense of, for them to possibly learn something new about the physics involved in these collisions. But there is still work ahead. Many questions remain. Understanding the sensitivity to the input and understanding the roles of hidden nodes in the neural network are still ideas not settled. Future work includes exploring these areas to understand what specifically the neural network used from the input to makes its decision and how each hidden layer effects that input to arrive at its decision.
+
+<br>
+</div>
 
 Paper currently being prepared for submission.
