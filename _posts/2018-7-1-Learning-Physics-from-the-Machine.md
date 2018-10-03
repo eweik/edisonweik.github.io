@@ -76,7 +76,7 @@ So, we want to take the information from these weights and translate it into som
        width="500">
 </p>
 
-where the momentum fraction $z_i$ of pixel $i$ is:
+where the momentum fraction $$z_i$$ of pixel $$i$$ is:
 <br>
 
 <p align="center">
@@ -95,14 +95,14 @@ Now comes the question of how to test similarity. We need a metric that reflects
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/DO-pair.png"
-       width="225">
+       width="500">
 </p>
 
 For the discriminant ordering over the entire sample, we use integration:
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/total-DO.png"
-       width="225">
+       width="500">
 </p>
 
 <div align="justify">
