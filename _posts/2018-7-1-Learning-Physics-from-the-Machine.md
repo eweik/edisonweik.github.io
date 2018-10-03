@@ -147,7 +147,11 @@ The procedure attempts to iteratively replace each of the high level engineered 
 <br>
 
 <div align="justify">
-We found that of the six high level variables, $$M_{jet}$$, $$C_2^{\beta=2}$$, and $$C_2^{\beta=1}$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
+We found that of the six high level variables,
+</div>
+$$M_{jet}$$, $$C_2^{\beta=2}$$, and $$C_2^{\beta=1}$$ 
+<div align="justify">
+(in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
 </div>
 
 <br>
@@ -175,3 +179,5 @@ We also compared the 3 orthogonalized variables to physics functional space defi
 <div align="justify">
   <b>Fig. 6</b>: Comparison of the three orthogonalized HL variables with points in the functional space defined by two parameters.
 </div>
+
+# Conclusion
