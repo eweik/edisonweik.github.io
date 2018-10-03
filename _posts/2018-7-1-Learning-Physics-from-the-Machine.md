@@ -131,15 +131,23 @@ As an example, below is table that shows between the discriminant ordering betwe
 
 # Application: Reduce and orthogonalize
 <div align="justify">
-Now there are a few different approaches our group took to generate insight regarding this problem. The first one attempts to explain the gap between neural networks trained on the images and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the lost information. The second attempts to gain insight into the neural network strategy on the images by mapping it into our space of functions. In the third, we look at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore the that more deeply. (For more information on the first two approaches, see the paper.)
+Now there are a few different approaches our group took to apply the translation method described above to the problem of classifying collisions. The first approach attempts to explain the gap between neural networks trained on the images and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the lost information. The second approach attempts to gain insight into the neural network strategy on the images by mapping it into our space of functions. The third approach looks at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore this more deeply. (For more information on the first two approaches, see the paper.)
 
 <br><br>
 
-My approach was take the set of high level engineered variables and reduce them to as small a set as necessary while maintaining the original classification power as well as being orthogonal from each other. By orthogonal, I mean that they don’t contain the same information for classification purposes, that is, they have a small discriminant ordering between each other.
+My approach was to take the set of high level engineered variables and reduce them to as small a set as necessary that both maintained the original classification power and was orthogonal within the other high level variables. By orthogonal, I mean that they don’t contain the same information about the event, that is, they have a small discriminant ordering between each other.
 
 <br><br>
 
-The procedure attempts to iteratively replace each of the high level engineered variables with a learned variable that captures the same classification power but minimizes the information overlap with the other variables. We first scan the list variables, selecting the one which has the largest negative impact on the classification power when it is removed from the set. This variable is then replaced by a neural network which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable. In order to maximize the independence of the new subnet output from the existing variables, the networks are trained together with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. Figure 3 depicts the structure of this first step. In the next iteration, the subnet is frozen and a second HL variable is selected for replace by a new subnet and orthogonalization process. This procedure is repeated until removing HL variables has no impact.
+The procedure I used attempts to iteratively replace each of the high level engineered variables with a learned variable that captures the same classification power but minimizes the information overlap with the other variables (see figure 4). The steps for this process are described below:
+
+<ol type="1">
+  <li>Scan the list variables, selecting the one which has the largest negative impact on the classification power when it is removed from the set</li>
+  <li>Replace the variable by a neural network (subnet) which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable.</li>
+  <li>Train this new network structure with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. These two networks have adverse loss functions, which pushes the subnet to produce a value that both maximizes its classification strength and its independence from the existing high level variables.</li>
+  <li>In the next iteration, the subnet in step 2 is frozen.</li>
+  <li>Repeat this procedure by going back to step 1 until removing HL variables has no impact.</li>
+</ol>  
 </div>
 
 <br>
@@ -149,7 +157,7 @@ The procedure attempts to iteratively replace each of the high level engineered 
        width="700">
 </p>
 <div align="justify">
-  <b>Fig. 4</b>: Step 1 analyzes the output of a subnet with only jet image features into a single output and trained as part of a larger classification network which also has access to high level engineered features except for one feature which is being replaced; the subnet is also trained by an adversarial network, which penalizes it if the subnet output can be used to predict the other five high level features. The subnet output is also compared the function space of possible strategies using the discriminant ordering metric. Step 2 analyzes the output of a second subnet, trained as shown to replace a second high level feature with an orthogonalized version.
+  <b>Fig. 4</b>: Step 1 analyzes the output of a subnet with only jet image features into a single output and trained as part of a larger classification network which also has access to high level engineered features except for one feature which is being replaced; the subnet is also trained by an adversarial network, which penalizes it if the subnet output can be used to predict the other five high level features. The subnet output is also compared to the &tau; function space of possible strategies using the discriminant ordering metric. Step 2 analyzes the output of a second subnet, trained as shown to replace a second high level feature with an orthogonalized version.
 </div>
 
 <br>
