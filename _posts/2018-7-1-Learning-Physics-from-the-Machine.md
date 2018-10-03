@@ -89,9 +89,26 @@ So essentially we want to take the information from the weights of the neural ne
 
 <br><br>
 
-
+Now comes the question of how to test similarity. We need a metric that reflects the task of using the information from the image for classification. However, it must also be invariant to non-linear 1-to-1 transformations of the two functions, because of the non-linear nature of neural networks. So, we consider the decision surfaces defined by the threshold on the function output. By decision surface, we mean the hyperplane which separates what the function believes to be signal and background. Specifically, we consider two functions similar if, for any pair of points, they produce the same signal-to-background ordering. This is expressed through what we call the discriminant ordering between two functions, f and g, for a pair of points:
 
 </div>
 
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/DO-pair.png"
+       width="225">
+</p>
 
+For the discriminant ordering over the entire sample, we use integration:
 
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/total-DO.png"
+       width="225">
+</p>
+
+<div align="justify">
+After normalizing, this integral evaluates to zero if the decision surfaces of the two functions have no similarity and one if they have identical decision surfaces. 
+	
+<br><br>
+
+As an example, below is table that shows between the discriminant ordering between pairs of the physicist engineered jet substructure variables:
+</div>
