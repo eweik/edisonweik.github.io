@@ -147,5 +147,15 @@ The procedure attempts to iteratively replace each of the high level engineered 
 <br>
 
 <div align="justify">
-We found that of the six high level variables, $$m_{jet}$$, $$c_2^{\beta=2}$$, and $$c_2^{\beta=1}$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
+We found that of the six high level variables, $$M_{jet}$$, $$C_2^{\beta=2}$$, and $$C_2^{\beta=1}$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
+</div>
+
+<br>
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/do_orthogonal.png"
+       width="500">
+</p>
+<div align="justify">
+  <b>Fig. 5</b>: Comparison of the similarity of classification by original HL variable and orthogonalized versions.
 </div>
