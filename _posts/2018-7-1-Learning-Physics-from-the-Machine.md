@@ -224,8 +224,6 @@ The interpretation of the above results is left for theorists. Note: we limit th
 </div>
 
 # Conclusion
-Power of neural networks and usefulness.
-Future work: exploring larger part of function space, exploring hidden nodes.
 <div align="justify">
 Neural networks have powerful properties that often perform better at tasks that experts are not perfect at. This is even in the case of classifying collisions of particles at high speeds, which are particularly complex. 
 	
