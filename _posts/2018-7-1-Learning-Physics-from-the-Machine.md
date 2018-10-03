@@ -174,7 +174,7 @@ We also compared the 3 orthogonalized variables to physics functional space defi
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig6.png"
-       width="500">
+       width="900">
 </p>
 <div align="justify">
   <b>Fig. 6</b>: Comparison of the three orthogonalized HL variables with points in the functional space defined by two parameters.
