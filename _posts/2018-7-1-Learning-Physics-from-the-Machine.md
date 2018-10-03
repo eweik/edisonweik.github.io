@@ -203,7 +203,7 @@ I show some success in learning high level variables that can both classify and 
 <br><br>
 </div>
 
-After learning our 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the $$\tau_1$$ showed showed no meaningful results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at different points in the parameter space.
+After learning our 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the $$\tau_1$$ showed showed no telling results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at different points in the parameter space.
 
 <br>
 
