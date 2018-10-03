@@ -5,14 +5,13 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-1 2 3 4 5 6 7
+1 2 3 4 5 6 7 8
 
-<div align="justify">
+/justify
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
 
 <br><br>
 
-</div>
 
 [<img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig1.png" 
        width="800"
