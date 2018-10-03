@@ -212,20 +212,13 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
        width="1200">
 </p>
 <div align="justify">
-  <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters.
+  <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters. We see that M<sub>jet</sub> and C<sub>2</sub><sup>&beta;=2</sup> have somewhat significant discriminant orderings with points in $tau;<sub>2</sub> space.
 </div>
 
 <br>
 
 <div align="justify">
-	
-We see that $$ \hat{M}_{jet} $$ and $$ \hat{c}_2^{\beta=2} $$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space. 
-
-<br>
-
-<div align="justify">
 We leave the interpretation of the above results for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
-
 </div>
 
 # Conclusion
