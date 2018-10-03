@@ -76,11 +76,8 @@ So, we want to take the information from these weights and translate it into som
        width="500">
 </p>
 
-
-<div align="justify">
 where the momentum fraction $z_i$ of pixel $i$ is:
 <br>
-</div>
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fractional_transverse_momentum.png"
