@@ -175,11 +175,9 @@ We found that of the six high level variables,
 (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. We list the results below (note that hat indicates a learned, orthogonal variable):
 </div>
 
-⋅⋅* $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.946.
-..* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.940.
-..* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2} $$ had an AUC of 0.906.
-
-<br>
+* $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.946
+* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.940
+* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2} $$ had an AUC of 0.906
 
 <div align="justify">
 A table listing the discriminant ordering of the three orthogonalized variables and the original high level variables is shown in figure 5.
