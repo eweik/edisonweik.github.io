@@ -29,9 +29,13 @@ However, new and exciting particles are rare. So we have to look at a lot of eve
 
 <br><br>
 
-To classify these events, physicists have come up with their own algorithms that take in the raw data of an event and produce what we will call “high-level engineered variables.” In theory, these high level variables should carry the same information as the raw, or “low level,” data. 
+To classify these events, physicists have come up with their own algorithms that take in the raw data of an event and produce what we will call “high-level engineered variables.” In theory, these high level variables should carry the same information as the raw, or “low level,” data. In this work, the high level variables we look at are:
 
-<br><br>
+</div>
+
+<p><p> $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ </p></p>
+
+<div align="justify">
 
 But, recent advances in machine learning has shown this to not necessarily be the case. In recent work by <a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>, neural networks have actually outperformed high level engineered variables for tasks such as classification (figure 2). This suggests that the high level engineered variables do not capture the same information as the low level data and that the algorithms physicists use for these variables are not optimal. The question now becomes: what is the neural network doing differently?
 
@@ -66,11 +70,11 @@ This is the tricky part. Taking the neural network output and translating it int
 
 <br><br>
 
-For this particular work, we looked at the problem of classifying jets of particles using substructure information. So the neural network would take an image of the jet substructure and classify it as either signal or background. Specifically, neural networks make these decisions using a set of numbers (weights) that it learns and non-linear transformations. Thus far, physicists can not make sense out of these weights; in fact, no one, not just physicists, can really understand these weights. They just happen to work and that’s that. 
+For this particular work, we looked at the problem of classifying jets of particles using substructure information. Essentially, the neural network would take an image of the collision and classify it as either signal or background. The neural network makes these decisions using a set of numbers (weights) that it learns to transform the input into an output. Thus far, physicists can not make sense out of these weights and transformation; in fact, no one, not just physicists, can really understand these things with great insight. They just happen to work and that’s that.
 
 <br><br>
 
-So, we want to take the information from these weights and translate it into something physicists can understand. Based on certain arguments and assumptions in quantum physics involving particle collisions which are beyond my scope, physicists can understand these jet images based on functions involving the momentum fraction in each pixel in the jet. The first three terms in this family of functions is expressed as:
+So, we want to take the information from the neural net and translate it into something physicists can understand. Based on certain arguments and assumptions in quantum physics involving particle collisions which are beyond my scope, physicists can understand these jet images through functions involving the momentum fraction in each pixel in the jet. The first three terms in this family of functions is expressed as:
 
 <br>
 </div>
@@ -89,11 +93,11 @@ where the momentum fraction $$z_i$$ of pixel $$i$$ is:
 </p>
 
 <div align="justify">
-So essentially we want to take the information from the weights of the neural network and test its similarity to these functions. If they are similar, then perhaps the neural network is learning something related to the theory of these functions.
+So we want to take the information from the neural net and compare it to these functions. If they are similar, this could suggest that the neural network is learning something related to the physics of these functions. Physicists could then explore these functions and possibly learn more about the nature of these collisions!
 
 <br><br>
 
-Now comes the question of how to test similarity. We need a metric that reflects the task of using the information from the image for classification. However, it must also be invariant to non-linear 1-to-1 transformations of the two functions, because of the non-linear nature of neural networks. So, we consider the decision surfaces defined by the threshold on the function output. By decision surface, we mean the hyperplane which separates what the function believes to be signal and background. Specifically, we consider two functions similar if, for any pair of points, they produce the same signal-to-background ordering. This is expressed through what we call the discriminant ordering between two functions, f and g, for a pair of points:
+But how do we compare two functions? We need a metric that reflects the task of using the information from the low level data (image) for classification. However, it must also be invariant to non-linear 1-to-1 transformations of the two functions, because of the non-linear nature of neural networks. So, we consider the decision surfaces defined by the threshold on the function output. By decision surface, we mean the hyperplane which separates what the function believes to be signal and background. The space where the hyperplane is defined would depend on the function or neural net at hand; but the important part is the threshold for which is separates signal and background. Specifically, we consider two functions similar if, for any pair of points, they produce the same signal-to-background ordering. This is expressed through what we call the <i>discriminant ordering</i> between two functions, <i>f</i> and <i>g</i>, for a pair of points <i>x</i> and <i>x'</i>:
 
 </div>
 
@@ -122,7 +126,7 @@ As an example, below is table that shows between the discriminant ordering betwe
        width="500">
 </p>
 <div align="justify" width="70%">
-  <b>Fig. 3</b>: Similarity of the decision surfaces between the six physicist engineered variables, as measured the discriminant ordering metric defined in the text above. A zero indicates no similarity, a one indicates perfect similarity.
+  <b>Fig. 3</b>: Similarity of the decision surfaces between jet mass and five physicist engineered variables, as measured the discriminant ordering metric defined above. A zero indicates no similarity, a one indicates perfect similarity.
 </div>
 
 # Application: Reduce and orthogonalize
