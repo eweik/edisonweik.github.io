@@ -148,7 +148,7 @@ The procedure I used attempts to iteratively replace each of the high level engi
 	<br>
   <li>Train this new network structure with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. These two networks have adverse loss functions, which pushes the subnet to produce a value that both maximizes its classification strength and its independence from the existing high level variables.</li>
 	<br>
-  <li>Freeze the weights in the subnet from step 2. This subnet is will now be considered a high level variable for future iterations. (However, it cannot be chosen for replacement in step 1.)</li>
+  <li>Freeze the weights in the subnet from step 2. This subnet is will now be considered a high level variable for future iterations. However, it cannot be chosen for replacement in step 1.</li>
 	<br>
   <li>Repeat this procedure by going back to step 1 until removing HL variables has no impact.</li>
 </ol>  
