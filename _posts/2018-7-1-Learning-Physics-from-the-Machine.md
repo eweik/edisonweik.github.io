@@ -5,7 +5,7 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-1 
+1 2
 
 <div align="justify">
 In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
@@ -148,7 +148,7 @@ The procedure attempts to iteratively replace each of the high level engineered 
 
 
 <div align="justify">
-We found that of the six high level variables, \$M_{jet}\$, \$C_2^{\beta=2}\$, and \$C_2^{\beta=1}\$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
+We found that of the six high level variables, $$M_{jet}$$, $$C_2^{\beta=2}$$, and $$C_2^{\beta=1}$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
 </div>
 
 <br>
