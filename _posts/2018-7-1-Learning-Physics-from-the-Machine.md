@@ -212,9 +212,12 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
        width="1200">
 </p>
 <div align="justify">
-  <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters.<p> We see that M<sub>jet</sub> and C<sub>2</sub><sup>&beta;=2</sup> have somewhat significant discriminant orderings with points in &tau;<sub>2</sub> space.</p>
+  <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters.
 </div>
 
+<br>
+
+We see that $$M_{jet}$$ and $$C_2^{\beta=2}$$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space.
 
 <br>
 
