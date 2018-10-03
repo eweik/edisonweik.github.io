@@ -78,7 +78,7 @@ So, we want to take the information from these weights and translate it into som
 
 
 <div align="justify">
-where the momentum fraction z_i of pixel i is:
+where the momentum fraction $z_i$ of pixel $i$ is:
 <br>
 </div>
 
