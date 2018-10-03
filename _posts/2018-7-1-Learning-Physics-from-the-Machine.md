@@ -159,3 +159,19 @@ We found that of the six high level variables, $$M_{jet}$$, $$C_2^{\beta=2}$$, a
 <div align="justify">
   <b>Fig. 5</b>: Comparison of the similarity of classification by original HL variable and orthogonalized versions.
 </div>
+
+<br>
+
+<div align="justify">
+We also compared the 3 orthogonalized variables to physics functional space defined by two parameters.
+</div>
+
+<br>
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig6.png"
+       width="500">
+</p>
+<div align="justify">
+  <b>Fig. 6</b>: Comparison of the three orthogonalized HL variables with points in the functional space defined by two parameters.
+</div>
