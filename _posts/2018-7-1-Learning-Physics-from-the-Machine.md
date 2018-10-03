@@ -210,10 +210,10 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/fig6.png"
        width="1200">
-</p>
 <div align="justify">
   <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters. We see that M<sub>jet</sub> and C<sub>2</sub><sup>&beta;=2</sup> have somewhat significant discriminant orderings with points in &tau;<sub>2</sub> space.
 </div>
+</p>
 
 <br>
 
