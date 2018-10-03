@@ -143,6 +143,7 @@ The procedure I used attempts to iteratively replace each of the high level engi
 
 <ol type="1">
   <li>Scan the list variables and select the one which has the largest negative impact on the classification power when it is removed from the set.</li>
+	<br>
   <li>Replace the variable by a neural network (subnet) which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable. This new network now contains a neural network which takes as input 5 high level variables and the output from a subnet (which takes as input the image of the collision) and tries classify the event.</li>
 	<br>
   <li>Train this new network structure with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. These two networks have adverse loss functions, which pushes the subnet to produce a value that both maximizes its classification strength and its independence from the existing high level variables.</li>
