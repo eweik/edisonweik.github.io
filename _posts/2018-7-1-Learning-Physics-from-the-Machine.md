@@ -102,7 +102,7 @@ For the discriminant ordering over the entire sample, we use integration:
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/total-DO.png"
-       width="500">
+       width="480">
 </p>
 
 <div align="justify">
@@ -112,3 +112,16 @@ After normalizing, this integral evaluates to zero if the decision surfaces of t
 
 As an example, below is table that shows between the discriminant ordering between pairs of the physicist engineered jet substructure variables:
 </div>
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/DO-high-level-variables.png"
+       width="500">
+</p>
+<div align="justify" width="70%">
+  <b>Fig. 3</b>: Similarity of the decision surfaces between the six physicist engineered variables, as measured the discriminant ordering metric defined in the text above. A zero indicates no similarity, a one indicates perfect similarity.
+</div>
+
+# Application: Reduce and orthogonalize
+
+
+
