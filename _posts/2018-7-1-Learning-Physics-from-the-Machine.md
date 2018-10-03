@@ -168,19 +168,21 @@ The procedure I used attempts to iteratively replace each of the high level engi
 
 
 <div align="justify">
-We found that of the six high level variables,
+I found that of the six high level variables,
 </div>
 <p><p> $$ M_{jet}, C_2^{\beta=2}, C_2^{\beta=1} $$ </p></p>
 <div align="justify">
-(in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. We list the results below (note that hat indicates a learned, orthogonal variable):
+(in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. I used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. The results are (note that hat indicates a learned, orthogonal variable):
 </div>
 
 * $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.946
+<br>
 * $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.940
+<br>
 * $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2} $$ had an AUC of 0.906
 
 <div align="justify">
-A table listing the discriminant ordering of the three orthogonalized variables and the original high level variables is shown in figure 5.
+A table listing the discriminant ordering between the three orthogonalized variables and the original high level variables is shown in figure 5.
 </div>
 
 <br>
@@ -190,14 +192,17 @@ A table listing the discriminant ordering of the three orthogonalized variables 
        width="500">
 </p>
 <div align="justify">
-  <b>Fig. 5</b>: Comparison of the similarity of classification by original HL variable and orthogonalized versions.
+  <b>Fig. 5</b>: Comparison of the similarity of classification by original high level variable and orthogonalized versions.
 </div>
 
 <br>
 
 <div align="justify">
-We also compared the 3 orthogonalized variables to physics functional space defined by two parameters.
+I show some success in learning high level variables that can both classify and be orthogonal with the other variables. However, the results are not perfect in the sense of perfectly replicating the classifying power of the original high level variables and having zero similarity with the other variables.
+	
+<br><br>
 </div>
+After learning our 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the first function in the family, parameterized by one variable, showed showed no meaningful results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at different points in the parameter space.
 
 <br>
 
@@ -206,7 +211,7 @@ We also compared the 3 orthogonalized variables to physics functional space defi
        width="1200">
 </p>
 <div align="justify">
-  <b>Fig. 6</b>: Comparison of the three orthogonalized HL variables with points in the functional space defined by two parameters.
+  <b>Fig. 6</b>: Comparison of the three orthogonalized high level variables with points in the functional space defined by two parameters.
 </div>
 
 # Conclusion
