@@ -219,12 +219,12 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
 
 <div align="justify">
 	
-Figure 6 shows that $$ \hat{M}_{jet} $$ and $$ \hat{c}_2^{\beta=2} $$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space. 
+We see that $$ \hat{M}_{jet} $$ and $$ \hat{c}_2^{\beta=2} $$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space. 
 
 <br>
 
 <div align="justify">
-We leave the interpretation of these results for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future could include exploring larger parts of this space and spaces of higher dimensionality.
+We leave the interpretation of the above results for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
 
 </div>
 
