@@ -6,8 +6,10 @@ category:
 tags:
 ---
 
+An overview of an undergraduate research project.
+
 <div align="justify">
-In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before; a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
+In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before, a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
 </div>
 
 <br><br>
@@ -23,12 +25,15 @@ In particle physics, people smash particles together at very high speeds to see 
 <br>
 
 <div align="justify">
-However, seeing new and exciting particles are rare. So we have to look at a lot of events (collisions) in the hope that we might see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data, which can be hard to analyze. To classify these events, physicists have come up with their own algorithms to produce high-level engineered variables from the images.
+However, new and exciting particles are rare. So we have to look at a lot of events (collisions) to possibly see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data! 
 
 <br><br>
 
-This has led to the application of machine learning in particle physics, specifically neural networks. Neural networks deal with learning patterns from data; more data means better ability to see patterns and make discoveries. In recent work by 
-<a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>, neural nets have actually outperformed high level engineered variables for tasks such as classification.
+To classify these events, physicists have come up with their own algorithms that take in the raw data of an event and produce what we will call “high-level engineered variables.” In theory, these high level variables should carry the same information as the raw, or “low level,” data. 
+
+<br><br>
+
+But, recent advances in machine learning has shown this to not necessarily be the case. In recent work by <a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>, neural networks have actually outperformed high level engineered variables for tasks such as classification (figure 2). This suggests that the high level engineered variables do not capture the same information as the low level data and that the algorithms physicists use for these variables are not optimal. The question now becomes: what is the neural network doing differently?
 
 <br><br>
 </div>
@@ -48,11 +53,11 @@ This has led to the application of machine learning in particle physics, specifi
 <br>
 
 <div align="justify">
-However, neural networks are tricky. They work well, but there are many open questions about them. Why do they work so well? What is the neural net learning from the data? Why is it learning that particular thing?
+This, however, is a tricky question to answer. Neural networks work well, but there are many open questions about them. Why do they work so well? What is the neural net learning from the data? Why is it learning that particular thing?
 
 <br><br>
 
-The objective of this work is to interpret the information that the neural network has learned in terms that physicists could understand. The motivation for this is to gain insight and possibly learn something new about the nature of the physics involved.
+The objective of this work is to interpret what the neural network has learned in terms that physicists could understand. The motivation for this is to gain insight and possibly learn something new about the nature of the physics involved.
 </div>
 
 # Translating from machine to human
