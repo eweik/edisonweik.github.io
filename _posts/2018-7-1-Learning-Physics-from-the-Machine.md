@@ -142,6 +142,8 @@ The procedure attempts to iteratively replace each of the high level engineered 
   <b>Fig. 4</b>: Step 1 analyzes the output of a subnet with only jet image features into a single output and trained as part of a larger classification network which also has access to high level engineered features except for one feature which is being replaced; the subnet is also trained by an adversarial network, which penalizes it if the subnet output can be used to predict the other five high level features. The subnet output is also compared the function space of possible strategies using the discriminant ordering metric. Step 2 analyzes the output of a second subnet, trained as shown to replace a second high level feature with an orthogonalized version.
 </div>
 
+<br>
+
 <div align="justify">
 We found that of the six high level variables, $$m_jet$$, $$c_2^b2$$, and $$c_2^b1$$ (in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. We used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. 
 </div>
