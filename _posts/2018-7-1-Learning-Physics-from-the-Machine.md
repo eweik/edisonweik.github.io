@@ -234,4 +234,4 @@ I believe that neural networks can provide insight into these types of complex t
 <br>
 </div>
 
-Paper currently being prepared for submission.
+The paper containing this work is currently being prepared for submission.
