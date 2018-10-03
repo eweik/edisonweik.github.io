@@ -177,3 +177,7 @@ We also compared the 3 orthogonalized variables to physics functional space defi
 </div>
 
 # Conclusion
+Power of neural networks and usefulness.
+Future work: exploring larger part of function space, exploring hidden nodes.
+
+Paper currently being prepared for submission.
