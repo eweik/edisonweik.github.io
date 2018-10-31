@@ -45,7 +45,7 @@ The next concept that's useful is **Bayesian linear regression**. Without gettin
 This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ to the full distribution of the output. Figure 1 shows the difference between these two methods.
 
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
 </p>
 _Figure 1_: Bayesian and Classical (Frequentist) predictions on linear observations. Both are very similar, but one advantage of the Bayesian approach is the uncertainty we get in our prediction. In the figure, the shaded region represents 2 standard deviations above and below the prediction.
 
