@@ -47,11 +47,13 @@ $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ) $$ $$ k( \cdot, \cdot ) ) $$
 Just for  preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
 
 To make this a bit more clear, let’s consider the Normal Distribution $$ \mathcal{N} ( \mu,$$ $$ \sigma^2) $$. When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<p>
 <tr>
     <td> <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal1.png" width="300"/> </td>
     <td> <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal10.png" width="300"/> </td>
 </tr>
+</p>
 
 In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. Some examples of types of kernels are:
 
@@ -66,6 +68,8 @@ In a similar manner, we can sample a function from a Gaussian Process. And, just
 * periodic kernel: $$ k(t_i, t_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
 
 So, we can sample different types of functions from a Gaussian Process defined by each of these kernels. In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. Note: in each of the figures I show a picture with one function sampled from the Gaussian Process and another picture showing ten functions sampled from the GP.
+
+What
 
 
 
