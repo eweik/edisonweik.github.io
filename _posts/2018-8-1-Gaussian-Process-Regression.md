@@ -50,3 +50,4 @@ To make this a bit more clear, let’s consider the Normal Distribution $$ \math
 
 ![]("//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal1.png") ![]("//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal10.png")
 
+In a similar manner, we can sample a function from a Gaussian Process.
