@@ -55,20 +55,9 @@ _Figure 2_: Probability distribution for a Gaussian distribution with variance 1
 
 <br>
 
-In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. Some examples of types of kernels are:
+In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. 
 
-* constant kernel: $$ k(x_i, x_j) = C $$
-
-* linear kernel: $$ k(x_i, x_j) = x_i \cdot x_j $$
-
-* squared exponential kernel: $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$
-
-* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
-
-* periodic kernel: $$ k(t_i, t_j) = \mathrm{exp}( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
-
-
-So, we can sample different types of functions from a Gaussian Process defined by each of these kernels. In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. Note: in each of the figures I show a picture with one function sampled from the Gaussian Process and another picture showing ten functions sampled from the GP.
+In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. In each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
