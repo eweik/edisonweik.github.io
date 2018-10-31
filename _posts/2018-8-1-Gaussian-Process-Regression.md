@@ -63,9 +63,9 @@ In a similar manner, we can sample a function from a Gaussian Process. And, just
 
 * squared exponential kernel: $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$
 
-* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
-
 * periodic kernel: $$ k(t_i, t_j) = \mathrm{exp}( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
+
+* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
 
 So, we can sample different types of functions from a Gaussian Process defined by each of these kernels. In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. Note: in each of the figures I show a picture with one function sampled from the Gaussian Process and another picture showing ten functions sampled from the GP.
 
@@ -116,7 +116,7 @@ The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what th
 In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\dot{}, \dot{})) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$,
+$$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\cdot, \cdot)) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$,
 
 then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), then $$y$$ must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2) $$! 
 
