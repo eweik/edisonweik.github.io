@@ -51,6 +51,9 @@ To make this a bit more clear, let’s consider the Normal Distribution $$ \math
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600">
 </p>
+<p>
+    <em>Figure 2: Probability distribution for a Gaussian distribution with variance 1 on the left and variance 10 on the right.</em>
+</p>
 
 In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. Some examples of types of kernels are:
 
