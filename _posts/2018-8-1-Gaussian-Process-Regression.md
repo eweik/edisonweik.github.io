@@ -109,6 +109,36 @@ Another point I forgot to make, and which I didn’t show in the figures, is tha
 <br>
 
 # Gaussian Process Regression
+Finally, we arrive at Gaussian Process Regression. In these types of problems we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. It is important to assume that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
+
+The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f({\bf x}) $$ was then we wouldn’t need to do GP regression because we could just plug in our future ’s and get a perfect prediction. Unfortunately, we don’t know $$ f({\bf x}) $$. So, what we’ll do is sample some functions from a Gaussian Process and go from there.
+
+In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\dot{}, \dot{})) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$,
+
+then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and  is Gaussian distributed (by assumption), then  must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2) $$! 
+
+If we have our labeled dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$ and we also have the unlabeled dataset $$ \{ {\bf x}_{i} |i=m+1,...,n\} $$
+for which we want to predict , then a reasonable assumption is that both  and  come from the same distribution, namely
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$$ \begin{bmatrix} y \\ y_* \end{bmatrix} \sim \mathcal{N}( 0, \begin{bmatrix} k(x,x) + \sigma^2I && k(x,x_*) \\ k(x_*, x) && k(x_*, x_*) + \sigma^2 I \end{bmatrix} ) $$.
+
+where $$ x $$ denotes labeled data and $$ x_* $$ denotes unlabeled data. So, from the conditioning property of multivariate Gaussians, we can get our conditional distribution of $$ y_* $$ given $$ x $$ as
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$$ {\bf y}_*|X, {\bf y}, X_* \sim \mathcal{N}( \mu_*, \Sigma_*) $$
+
+where
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_* $$.
+
+And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. So below are some examples:
+
+
 
 
 
