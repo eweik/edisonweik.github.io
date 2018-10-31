@@ -104,7 +104,7 @@ _Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x
 
 <br>
 
-Another point I forgot to make, and which I didn’t show in the figures, is that different hyperparameters are associated with each of these kernels can effect the types of functions sampled. For example, in the periodic kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would result in functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would result in functions with lower frequencies. These artifacts of hyperparameters are present in all the kernel functions shown above.
+Another point I forgot to make, and which I didn’t show in the figures, is that different hyperparameters are associated with each of these kernels can effect the types of functions sampled. For example, in the periodic kernel $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would result in functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would result in functions with lower frequencies. These artifacts of hyperparameters are present in all the kernel functions shown above.
 
 <br>
 
@@ -115,10 +115,10 @@ The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what th
 
 In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\dot{}, \dot{})) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$,
 
-then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and  is Gaussian distributed (by assumption), then  must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2) $$! 
+then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), then $$y$$ must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2) $$! 
 
 If we have our labeled dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$ and we also have the unlabeled dataset $$ \{ {\bf x}_{i} |i=m+1,...,n\} $$
 for which we want to predict , then a reasonable assumption is that both  and  come from the same distribution, namely
