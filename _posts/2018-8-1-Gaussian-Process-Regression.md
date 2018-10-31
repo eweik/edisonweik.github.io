@@ -55,4 +55,6 @@ To make this a bit more clear, let’s consider the Normal Distribution $$ \math
 
 In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. Some examples of types of kernels are:
 
-* constant kernel: $$ k(t_i, t_j) = C $$
+* constant kernel: $$ k(x_i, x_j) = C $$
+
+* linear kernel: $$ k(x_i, x_j) = x_i \cdot x_j $$
