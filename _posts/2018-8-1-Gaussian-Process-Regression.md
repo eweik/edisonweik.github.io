@@ -61,11 +61,11 @@ In a similar manner, we can sample a function from a Gaussian Process. And, just
 
 * linear kernel: $$ k(x_i, x_j) = x_i \cdot x_j $$
 
-* squared exponential kernel: $$ k(x_i, x_j) = \mathrm{exp} ( -\dfrac{1}{2l^2} | x_i - x_j |^2 ) $$
+* squared exponential kernel: $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$
 
-* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp} (- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
+* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
 
-* periodic kernel: $$ k(t_i, t_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
+* periodic kernel: $$ k(t_i, t_j) = \mathrm{exp}( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
 
 So, we can sample different types of functions from a Gaussian Process defined by each of these kernels. In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. Note: in each of the figures I show a picture with one function sampled from the Gaussian Process and another picture showing ten functions sampled from the GP.
 
@@ -80,6 +80,8 @@ _Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ 
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
 _Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x $$. That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1 $$. In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t) $$.
+
+<br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
@@ -101,4 +103,13 @@ _Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x
 _Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
 
 <br>
+
+Another point I forgot to make, and which I didn’t show in the figures, is that different hyperparameters are associated with each of these kernels can effect the types of functions sampled. For example, in the periodic kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would result in functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would result in functions with lower frequencies. These artifacts of hyperparameters are present in all the kernel functions shown above.
+
+<br>
+
+# Gaussian Process Regression
+
+
+
 
