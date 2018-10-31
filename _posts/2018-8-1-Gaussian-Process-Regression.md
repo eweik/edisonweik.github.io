@@ -9,14 +9,7 @@ tags:
 Such a nice name for such a neat tool! Gaussian process regression (GPR) is a powerful method for regression, i.e. for predicting continuous valued outputs. But, before we go more into it, there are some concepts you should be familiar with if you want to fully appreciate and understand GPR. In particular, these concepts are the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them and go over the key results, but I can’t possibly substitute for a more thorough reading and  education of these topics. So, if you feel like looking more into them at other resources, I would think you wise!
 
 The main mathematical structure behind GPR is the _multivariate Gaussian distribution_. Multivariate Gaussians are simply generalizations of univariate Gaussian distributions to $n$ dimensions. The probability density function (PDF) of a set of random variables $ x \in {\rm I\!R}^n $ that are distributed by a multivariate Gaussian with mean $ \mu \in {\rm I\!R}^n $ and positive semi-definite (note: positive semidefinite means it has non-negative eigenvalues) covariance $ \Sigma \in {\rm I\!R}^{n \times n} $ is:
-$ p(x; \mu, \Sigma) = 
-\dfrac{1}
-{\sqrt{ (2\pi)^n |\Sigma|}}
-exp (
-- \dfrac{1}{2}
-(x - \mu)^T
-\Sigma^{-1}
-(x - \mu) ) $
+$ p(x; \mu, \Sigma) = \dfrac{1}{\sqrt{ (2\pi)^n |\Sigma|}} exp ( - \dfrac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) ) $
 
 An important important property of multivariate Gaussians that we’ll need for GP regression is the _conditioning property_. Specifically, if we write our random vector $ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $ as
 
