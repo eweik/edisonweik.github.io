@@ -39,9 +39,7 @@ These are a very neat results! So just remember this for now or come back to it 
 
 <br>
 
-The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_!
-
-This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ to the full distribution of the output. Figure 1 shows the difference between these two methods.
+The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_! This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
