@@ -49,7 +49,7 @@ Just for  preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot,
 To make this a bit more clear, let’s consider the Normal Distribution $$ \mathcal{N} ( \mu,$$ $$ \sigma^2) $$. When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
 
 <figure>
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600" align="center>
     <figcaption>Figure 2: Probability distribution for a Gaussian distribution with variance 1 on the left and variance 10 on the right.</figcaption>
 </figure>
 
