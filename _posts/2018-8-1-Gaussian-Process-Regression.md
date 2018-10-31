@@ -25,16 +25,14 @@ x_1 \\
 . \\
 . \\
 x_k
-\end{bmatrix} $$,  
-$$ x_b =
+\end{bmatrix} $$ & $$ x_b =
 \begin{bmatrix}
 x_{k+1} \\
 . \\
 . \\
 x_n
 \end{bmatrix} $$
-&
-then 
+, then 
 $$ \mu_a =
 \begin{bmatrix}
 \mu_a \\
@@ -49,13 +47,7 @@ $$\Sigma =
 
 The conditioning property then says that the distribution of $$x_a$$ given (conditional on) $$x_b$$ is also multivariate Gaussian:
 
-<p> $$ x_a | x_b \sim
-\mathcal{N}
-( \mu_a + \Sigma_{ab} \Sigma_{bb}^{-1} (x_b - \mu_b),$$ $$\Sigma_{aa} - 
-\Sigma_{ab}
-\Sigma_{bb}^{-1}
-\Sigma_{ba}
-)$$ </p> 
+<p> $$ x_a | x_b \sim \mathcal{N}( \mu_a + \Sigma_{ab} \Sigma_{bb}^{-1} (x_b - \mu_b),$$ $$\Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})$$ </p> 
 
 This is a very neat result and one that we’ll find good use for later! So just remember this for now or come back to it if you forget.
 
