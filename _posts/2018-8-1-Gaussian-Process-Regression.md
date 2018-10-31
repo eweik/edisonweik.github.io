@@ -162,5 +162,10 @@ _Figure 9_: In this plot, the underlying function is $$ f(x) = x \mathrm{sin} (x
 </p>
 _Figure 10_: Here the underlying function is $$ \mathrm{sin}(x) $$. I tried both the squared exponential and the periodic kernel for this. It’s interesting that beyond the range of observations the periodic kernel was able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond the range of observations. This is where our prior knowledge would be very helpful in choosing the right kernel. However, in most problems, I think it’d be rare to have to make predictions that much beyond the range of observations, so for the sake of most classification problems, the squared exponential kernel seems to work just fine.
 
+# Conclusion
+Gaussian Process regression is powerful general tool for regression problems. And hopefully you learned a bit more about it in this post. But the truth is, this is only the beginning. I know I can still learn a lot more about the theory of kernel functions, ways to make this algorithm faster, and using Gaussian Processes for classification. It’s long road ahead, but everyday we can take one more step in the right direction.
+
+### References
+* Carl E. Rasmussen and Christopher K. I. Williams. Gaussian Processes for Machine Learning. MIT Press, 2006. Online: http://www.gaussianprocess.org/gpml/
 
 
