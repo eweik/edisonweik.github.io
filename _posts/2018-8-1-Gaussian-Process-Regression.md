@@ -63,9 +63,10 @@ In a similar manner, we can sample a function from a Gaussian Process. And, just
 
 * squared exponential kernel: $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$
 
+* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
+
 * periodic kernel: $$ k(t_i, t_j) = \mathrm{exp}( - \mathrm{sin}^2 ( \alpha \pi (t_i - t_j))) $$
 
-* symmetric kernel: $$ k(x_i, x_j) = \mathrm{exp}(- ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2 ) $$
 
 So, we can sample different types of functions from a Gaussian Process defined by each of these kernels. In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. Note: in each of the figures I show a picture with one function sampled from the Gaussian Process and another picture showing ten functions sampled from the GP.
 
@@ -136,10 +137,27 @@ where
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_* $$.
 
-And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. So below are some examples:
+And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. Below are some figures where I play around with Gaussian Process Regression using different types of observations and different kernels.
 
 
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
+</p>
+_Figure 8_: This plot shows observations corresponding to a noisy linear model $f(x) = x$. Since the data look sort-of-linear, it’s reasonable to first try linear kernel. And voila! Also, this seems to be very Bayesian linear regression and Gaussian Process Regression. With the linear kernel, GPR is just BLR. So, in a sense, GPR is a more general version of BLR.
 
+<br>
+
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
+</p>
+_Figure 9_: In this plot, the underlying function is $$ f(x) = x \mathrm{sin} x $$. Obviously a bit more tricky than a linear model. Here, I tried a couple different kernels, the squared exponential and the symmetric kernel. With little hyper-parameter optimization, I was able to get a decent fit for both kernels. But, if I’m just comparing to prediction (blue line) to the underlying function (red line), I think that the symmetric kernel has a nicer fit. Which makes sense, since $$ x \mathrm{sin} x $$ is symmetric. Here is a good opportunity to use our prior to help our kernel choice, even though it wasn’t too much better than the squared exponential kernel.
+
+<br>
+
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
+</p>
+_Figure 10_: Here the underlying function is $$ sin(x) $$. I tried both the squared exponential and the periodic kernel for this. It’s interesting that beyond the range of observations the periodic kernel was able to follow $$ sin(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond the range of observations. This is where our prior knowledge would be very helpful in choosing the right kernel. However, in most problems, I think it’d be rare to have to make predictions that much beyond the range of observations, so for the sake of most classification problems, the squared exponential kernel seems to work just fine.
 
 
 
