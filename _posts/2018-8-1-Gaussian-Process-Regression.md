@@ -53,6 +53,8 @@ To make this a bit more clear, let’s consider the Normal Distribution $$ \math
 </p>
 _Figure 2_: Probability distribution for a Gaussian distribution with variance 1 on the left and variance 10 on the right.
 
+<br>
+
 In a similar manner, we can sample a function from a Gaussian Process. And, just like when we sample a number from a Normal distribution, when we sample a function from a GP, the distribution of the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. Some examples of types of kernels are:
 
 * constant kernel: $$ k(x_i, x_j) = C $$
@@ -70,8 +72,33 @@ So, we can sample different types of functions from a Gaussian Process defined b
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
 </p>
-Figure 3: Functions sampled from a Gaussian Process with a constant kernel
+_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = 1 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions!
 
+<br>
 
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
+</p>
+_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x $$. That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1 $$. In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t) $$.
 
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
+</p>
+_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l $$) or more volative (with smaller $$ l $$) functions.
+
+<br>
+
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_symmetric.png" width="600">
+</p>
+_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ t = 0 $$.
+
+<br>
+
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_periodic.png" width="600">
+</p>
+_Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
+
+<br>
 
