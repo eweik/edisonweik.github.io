@@ -13,6 +13,7 @@ The main mathematical structure behind GPR is the _multivariate Gaussian distrib
 
 An important important property of multivariate Gaussians that we’ll need for GP regression is the _conditioning property_. Specifically, if we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
+<p>
 $$ x_a =
 \begin{bmatrix}
 x_a \\
@@ -31,8 +32,9 @@ x_{k+1} \\
 . \\
 . \\
 x_n
-\end{bmatrix} $$
-, then 
+\end{bmatrix} $$, </p>
+
+<p> then 
 $$ \mu_a =
 \begin{bmatrix}
 \mu_a \\
@@ -43,7 +45,7 @@ $$\Sigma =
 \begin{bmatrix}
 \Sigma_{aa} & \Sigma_{ab} \\
 \Sigma_{ba} & \Sigma_{bb}
-\end{bmatrix} $$.
+\end{bmatrix} $$. </p>
 
 The conditioning property then says that the distribution of $$x_a$$ given (conditional on) $$x_b$$ is also multivariate Gaussian:
 
