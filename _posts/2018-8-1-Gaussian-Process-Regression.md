@@ -8,16 +8,18 @@ tags:
 
 Such a big sounding name! 
 
-I remember the first time I heard about Gaussian Processes. It was the summer of 2016, while I was at CERN, and another student was working on a project using Gaussian Processes. I remember him sounding very smart talking about "kernel functions" and other stuff and thinking I could never understand that. Well, here I am - two years later. And with a better understanding of Gaussian Processes and  regression. Hopefully it all makes sense.
+I remember the first time I heard about Gaussian Processes. It was the summer of 2016, while I was at CERN, and another student was working on a project using Gaussian Processes. I remember him sounding very smart talking about "kernel functions" and other stuff and thinking I could never understand that. Well, here I am - two years later. And with a better understanding of Gaussian Processes and  regression. Hopefully it all makes sense to you.
 
-Gaussian process regression (GPR) is general method for predicting continuous valued outputs. But it's a very powerful method, stronger than normal linear regression and support vector machines. But, before we go more into it, there are some concepts you should be familiar with if you want to fully appreciate and understand GPR. In particular, you should know about the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t possibly substitute for a more thorough reading of these topics.
+Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's very powerful, stronger than normal linear regression and support vector machines. But, before we go more into it, there are some concepts you should be familiar with if you want to fully appreciate and understand GPR. In particular, you should know about the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t possibly substitute for a more thorough reading of these topics.
 
-The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. Multivariate Gaussian distributions are simply extensions of univariate Gaussian distributions to $$n$$ dimensions. But they don't just describe the behavior of each component; they also describe how the components effect each other!
+The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. Multivariate Gaussian distributions are simply extensions of univariate Gaussian distributions to $$n$$ dimensions. Whereas a univariate Gaussian desribes one random variable, a multivariate Gaussian describes an entire vector of random variables. And not just describe the behavior of each component, but also describe how the components vary with each other!
 
 The probability density function (PDF) of a set of random variables $$ x \in {\rm I\!R}^n $$ that are distributed by a multivariate Gaussian with mean $$ \mu \in {\rm I\!R}^n $$ and positive semi-definite (i.e. non-negative eigenvalues) covariance $$ \Sigma \in {\rm I\!R}^{n \times n} $$ is:
 <p> $$p(x; \mu, \Sigma) = \dfrac{1}{\sqrt{ (2\pi)^n |\Sigma|}} \mathrm{exp} ( - \dfrac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) ) $$ </p>
 
-One important important property of multivariate Gaussians that we’ll need for GP regression is the _conditioning property_. Specifically, if we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
+One important important property of multivariate Gaussians that we’ll need for GP regression is the _conditioning property_ and the _summation property_. I
+
+f we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x = \begin{bmatrix} x_a \\ x_b \end{bmatrix} $$ where $$ x_a = \begin{bmatrix} x_1 \\ . \\ . \\ x_k \end{bmatrix} $$ and $$ x_b = \begin{bmatrix} x_{k+1} \\ . \\ . \\ x_n \end{bmatrix} $$, then
@@ -28,14 +30,19 @@ $$ x = \begin{bmatrix} x_a \\ x_b \end{bmatrix} $$ where $$ x_a = \begin{bmatrix
 The conditioning property says that the distribution of $$x_a$$ given (conditional on) $$x_b$$ is also multivariate Gaussian!
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$x_a | x_b \sim \mathcal{N}( \mu_a + \Sigma_{ab} \Sigma_{bb}^{-1} (x_b - \mu_b),$$ $$\Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})$$ 
+$$x_a | x_b \sim \mathcal{N}( \mu_a + \Sigma_{ab} \Sigma_{bb}^{-1} (x_b - \mu_b),$$ $$\Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})$$,
 
-This is a very neat result! So just remember this for now or come back to it if you forget.
+and the summation property says that if $$ x \sim \mathcal{N}( \mu_x, \Sigma_x ) $$ and $$ y \sim \mathcal{N}( \mu_y, \Sigma_y ) $$, then 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+$$ x + y \sim \mathcal{N}( \mu_x + \mu_y, \Sigma_x + \Sigma_y ) $$
+
+These are a very neat results! So just remember this for now or come back to it if you forget.
 
 
-The next tool we’ll need in our arsenal is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important details about BLR is that you can _use your prior knowledge_ of the dataset to help with your predictions and you _get a posterior distribution of the prediction_!
+The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_!
 
-This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression, however, uses _Maximum a Posteriori estimation_. Figure 1 shows the difference between these two methods.
+This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ to the full distribution of the output. Figure 1 shows the difference between these two methods.
 
 # Gaussian Processes
 The final tool we need to know before we get to GP regression are Gaussian processes (GPs)!
