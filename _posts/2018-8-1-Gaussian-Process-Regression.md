@@ -30,7 +30,7 @@ The conditioning property says that the distribution of $$x_a$$ given (condition
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$x_a | x_b \sim \mathcal{N}( \mu_a + \Sigma_{ab} \Sigma_{bb}^{-1} (x_b - \mu_b),$$ $$\Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})$$,
 
-The additive property says that if $$ x \sim \mathcal{N}( \mu_x, \Sigma_x ) $$ and $$ y \sim \mathcal{N}( \mu_y, \Sigma_y ) $$, then 
+The additive property says that if $$ x \sim \mathcal{N}( \mu_x, \Sigma_x ) $$ and $$ y \sim \mathcal{N}( \mu_y, \Sigma_y ), $$ then 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x + y \sim \mathcal{N}( \mu_x + \mu_y, \Sigma_x + \Sigma_y ) $$
@@ -54,16 +54,16 @@ Just before we get to Gaussian Process regression, it's obviously important to u
 **Gaussian processes** are defined as a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed! An intuitive way to think of them are as infinite dimensional extensions of the multivariate Gaussian distribution. Okay, maybe that's not so intuitive. It's actually quite hard for me to think of multivariate Gaussians in 2 or 3 dimensions, and I can't even imagine what they're like in infinite dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$ f( x ) \sim \mathcal{N} ( 0 $$ $$ k( x, x ) ) $$ 
+$$ f( x ) \sim \mathcal{N} ( 0, k( x, x ) ) $$ 
 
-Thinking of Gaussian Processes this way allows us see them as distributions over random functions! This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) $$. So another way to denote $$ f(x) $$ is as
+Thinking of Gaussian Processes this way allows us see them as distributions over random functions! This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) .$$ So another way to denote $$ f(x) $$ is as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ) $$ $$ k( \cdot, \cdot ) ) $$ 
+$$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$ 
 
 Just forpreciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
 
-One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu,$$ $$ \sigma^2).$$ When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
+One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu, \sigma^2).$$ When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600">
@@ -86,21 +86,21 @@ _Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
-_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x $$. That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1 $$. In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t) $$.
+_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t). $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
 </p>
-_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l $$) or more volative (with smaller $$ l $$) functions.
+_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_symmetric.png" width="600">
 </p>
-_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ t = 0 $$.
+_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ t = 0. $$
 
 <br>
 
@@ -123,9 +123,9 @@ The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what th
 In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\cdot, \cdot)) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$,
+$$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\cdot, \cdot)) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2), $$
 
-then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), then $$y$$ must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2) $$! 
+then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), then $$y$$ must also be multivariate Gaussian distributed, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2)! $$
 
 If we have our labeled dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$ and we also have the unlabeled dataset $$ \{ {\bf x}_{i} |i=m+1,...,n\} $$
 for which we want to predict , then a reasonable assumption is that both  and  come from the same distribution, namely
@@ -141,11 +141,11 @@ $$ {\bf y}_*|X, {\bf y}, X_* \sim \mathcal{N}( \mu_*, \Sigma_*) $$
 where
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-$$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_* $$.
+$$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_*. $$
 
 And that’s it. We can now get our estimate as $$ \mu_* $$ and our covariance as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
 
-Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the covariance $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix), which takes $$ O(n^3) $$ time.
+Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the covariance $$ ( \Sigma_* ). $$ The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix), which takes $$ O(n^3) $$ time.
 
 ```python
 n = len(X)
@@ -181,25 +181,25 @@ Below are some figures where I play around with Gaussian Process Regression with
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
 </p>
-_Figure 9_: This plot shows GP regression with a linear kernel o observations corresponding to a noisy $$f(x) = x$$. 
+_Figure 9_: This plot shows GP regression with a linear kernel o observations corresponding to a noisy $$f(x) = x.$$
 
 <br>
 
-In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x) $$. Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
+In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x). $$ Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
 </p>
-_Figure 10_: Gaussian processes regression using the squared exponential kernel and the symmetric kernel. The observations are based on the function $$ f(x) = x \mathrm{sin} (x) $$.
+_Figure 10_: Gaussian processes regression using the squared exponential kernel and the symmetric kernel. The observations are based on the function $$ f(x) = x \mathrm{sin} (x). $$
 
 <br>
 
-In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x) $$. It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
+In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x). $$ It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
 </p>
-_Figure 11_: Gaussian processes regression using the squared exponential kernel and the periodic kernel. The observations are based on the function $$ \mathrm{sin}(x) $$. 
+_Figure 11_: Gaussian processes regression using the squared exponential kernel and the periodic kernel. The observations are based on the function $$ \mathrm{sin}(x) .$$
 
 <br>
 
