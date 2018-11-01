@@ -39,7 +39,7 @@ These are a very neat results! So just remember this for now or come back to it 
 
 <br>
 
-The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_! This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
+The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_! This is in contrast to other methods which return a single value with no account of the possible variance in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
@@ -143,9 +143,9 @@ where
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_* $$.
 
-And that’s it. We can now get our estimate as $$ \mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
+And that’s it. We can now get our estimate as $$ \mu_* $$ and our covariance as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
 
-Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the uncertainty $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix), which takes $$ O(n^3) $$ time.
+Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the covariance $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix), which takes $$ O(n^3) $$ time.
 
 ```python
 n = len(X)
@@ -167,7 +167,7 @@ var_hat = covar_hat.diagonal()
 
 <br>
 
-Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the variance shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
@@ -185,7 +185,7 @@ _Figure 9_: This plot shows GP regression with a linear kernel o observations co
 
 <br>
 
-In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x) $$. Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the uncertainty from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
+In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x) $$. Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
