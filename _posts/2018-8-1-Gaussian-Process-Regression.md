@@ -149,12 +149,13 @@ And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty a
 Just to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean ( 1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="800">
 </p>
 _Figure 8_: These pictures shows how the posterior distribution of the prediction changes as more observations are made. The GP here uses the squared exponential kernel.
 
-Below are some figures where I play around with Gaussian Process Regression using different types of observations and different kernels.
+<br>
 
+Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression with and shows how Gaussian Process Regression is a more general version of Bayesian linear regression. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
