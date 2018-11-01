@@ -160,7 +160,7 @@ Below are some figures where I play around with Gaussian Process Regression with
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
 </p>
-_Figure 9_: This plot shows observations corresponding to a noisy linear model $$f(x) = x$$. Since the data look sort-of-linear, it’s reasonable to first try linear kernel. And voila! Also, this seems to be very Bayesian linear regression and Gaussian Process Regression. With the linear kernel, GPR is just BLR. So, in a sense, GPR is a more general version of BLR.
+_Figure 9_: This plot shows GP regression with a linear kernel o observations corresponding to a noisy $$f(x) = x$$. 
 
 <br>
 
