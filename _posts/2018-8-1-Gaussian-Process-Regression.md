@@ -53,7 +53,7 @@ Just before we get to Gaussian Process regression, it's obviously important to u
 
 **Gaussian processes** are defined as a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed! An intuitive way to think of them are as infinite dimensional extensions of the multivariate Gaussian distribution. Okay, maybe that's not so intuitive. It's actually quite hard for me to think of multivariate Gaussians in 2 or 3 dimensions, and I can't even imagine what they're like in infinite dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0 $$ $$ k( x, x ) ) $$ 
 
 Thinking of Gaussian Processes this way allows us see them as distributions over random functions! This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) $$. So another way to denote $$ f(x) $$ is as
@@ -79,21 +79,21 @@ In this post, I’ll only look at Gaussian Processes with a zero mean function, 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
 </p>
-_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = 1 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions!
+_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions!
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
-_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x $$. That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1 $$. In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t) $$.
+_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x $$. That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1 $$. In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t) $$.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
 </p>
-_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l $$) or more volative (with smaller $$ l $$) functions.
+_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l $$) or more volative (with smaller $$ l $$) functions.
 
 <br>
 
@@ -107,7 +107,7 @@ _Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_periodic.png" width="600">
 </p>
-_Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
+_Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp} ( - \dfrac{2}{l^2} \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
 
 <br>
 
