@@ -53,7 +53,7 @@ Just before we get to Gaussian Process regression, it's obviously important to u
 
 **Gaussian processes** are defined as a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed! An intuitive way to think of them are as infinite dimensional extensions of the multivariate Gaussian distribution. Okay, maybe that's not so intuitive. It's actually quite hard for me to think of multivariate Gaussians in 2 or 3 dimensions, and I can't even imagine what they're like in infinite dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0 $$ $$ k( x, x ) ) $$ 
 
 Thinking of Gaussian Processes this way allows us see them as distributions over random functions! This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) $$. So another way to denote $$ f(x) $$ is as
@@ -63,7 +63,7 @@ $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ) $$ $$ k( \cdot, \cdot ) ) $$
 
 Just forpreciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
 
-One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu,$$ $$ \sigma^2) $$. When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
+One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu,$$ $$ \sigma^2).$$ When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600">
@@ -145,8 +145,29 @@ $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k
 
 And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
 
+Below is the segment of code that’s calculates the estimate $$( mu_*)$$ and the uncertainty $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the inverse), which takes $$ O(n^3) $$ time.
 
-Just to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+```python
+n = len(X)
+K = variance( X, k )
+L = np.linalg.cholesky( K + noise*np.identity(n) )    
+    
+# predictive mean
+alpha = np.linalg.solve( np.transpose(L), np.linalg.solve( L, Y ) )
+k_hat = covariance( X, x_hat, k )
+mu_hat = np.matmul( np.transpose(k_hat), alpha )
+    
+# predictive variance
+v = np.linalg.solve( L, k_hat )
+k_hathat = variance( x_hat, k )
+a = np.matmul( np.transpose(v), v )
+covar_hat = k_hathat - np.matmul( np.transpose(v), v )
+var_hat = covar_hat.diagonal()
+```
+
+<br>
+
+Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
