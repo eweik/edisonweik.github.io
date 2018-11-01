@@ -149,13 +149,13 @@ And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty a
 Just to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean ( 1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="800">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
 </p>
 _Figure 8_: These pictures shows how the posterior distribution of the prediction changes as more observations are made. The GP here uses the squared exponential kernel.
 
 <br>
 
-Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression with and shows how Gaussian Process Regression is a more general version of Bayesian linear regression. 
+Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression with and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
@@ -164,10 +164,12 @@ _Figure 9_: This plot shows GP regression with a linear kernel o observations co
 
 <br>
 
+In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x) $$. Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the uncertainty from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
+
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
 </p>
-_Figure 10_: In this plot, the underlying function is $$ f(x) = x \mathrm{sin} (x) $$. Obviously a bit more tricky than a linear model. Here, I tried a couple different kernels, the squared exponential and the symmetric kernel. With little hyper-parameter optimization, I was able to get a decent fit for both kernels. But, if I’m just comparing to prediction (blue line) to the underlying function (red line), I think that the symmetric kernel has a nicer fit. Which makes sense, since $$ x \mathrm{sin} x $$ is symmetric. Here is a good opportunity to use our prior to help our kernel choice, even though it wasn’t too much better than the squared exponential kernel.
+_Figure 10_: Gaussian processes regression using the squared exponential kernel and the symmetric kernel. The observations are based on the function $$ f(x) = x \mathrm{sin} (x) $$.
 
 <br>
 
