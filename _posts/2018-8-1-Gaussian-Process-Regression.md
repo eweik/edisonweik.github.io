@@ -149,17 +149,17 @@ Below is the segment of code that’s calculates the estimate $$( mu_*)$$ and th
 
 ```python
 n = len(X)
-K = variance( X, k )
+K = variance( X, k )  // returns variance of X defined by kernel function k
 L = np.linalg.cholesky( K + noise*np.identity(n) )    
     
 # predictive mean
 alpha = np.linalg.solve( np.transpose(L), np.linalg.solve( L, Y ) )
-k_hat = covariance( X, x_hat, k )
+k_hat = covariance( X, x_hat, k ) // returns covariance of X and x_hat defined by kernel function k
 mu_hat = np.matmul( np.transpose(k_hat), alpha )
     
 # predictive variance
 v = np.linalg.solve( L, k_hat )
-k_hathat = variance( x_hat, k )
+k_hathat = variance( x_hat, k )  
 a = np.matmul( np.transpose(v), v )
 covar_hat = k_hathat - np.matmul( np.transpose(v), v )
 var_hat = covar_hat.diagonal()
