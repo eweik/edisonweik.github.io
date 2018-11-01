@@ -188,6 +188,6 @@ Gaussian Process regression is powerful all-purpose, general tool for regression
 Hopefully, though, you learned a bit more about Gaussian Process Regression in this post. And one exciting thing is that this is only the beginning. I know I can still learn a lot more about the theory of kernel functions and building my own kernels, working with higher dimensional GPs, and applying Gaussian Processes for classification. It’s long road ahead.
 
 ### References
-* Carl E. Rasmussen and Christopher K. I. Williams. Gaussian Processes for Machine Learning. MIT Press, 2006. Online: http://www.gaussianprocess.org/gpml/
+* Carl E. Rasmussen and Christopher K. I. Williams. Gaussian Processes for Machine Learning. MIT Press, 2006. Online: [http://www.gaussianprocess.org/gpml/](http://www.gaussianprocess.org/gpml/)
 
 
