@@ -143,9 +143,9 @@ where
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_* $$.
 
-And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
+And that’s it. We can now get our estimate as $$ \mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
 
-Below is the segment of code that’s calculates the estimate $$( mu_*)$$ and the uncertainty $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the inverse), which takes $$ O(n^3) $$ time.
+Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the uncertainty $$ ( \Sigma_* ) $$. The algorithm I use is taken from Rasmussen et al, chapter 2. Instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix), which takes $$ O(n^3) $$ time.
 
 ```python
 n = len(X)
@@ -194,7 +194,7 @@ _Figure 10_: Gaussian processes regression using the squared exponential kernel 
 
 <br>
 
-In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x) $$. It’s interesting that beyond the range of observations $(-5, +5)$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
+In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x) $$. It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
