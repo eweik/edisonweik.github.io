@@ -146,7 +146,7 @@ $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k
 And that’s it. We can now get our estimate as $$ mu_* $$ and our uncertainty as $$ \Sigma_* $$. So, essentially Gaussian Process regression is just conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) $$. 
 
 
-Just to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean ( 1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+Just to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the uncertainty shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
@@ -155,7 +155,7 @@ _Figure 8_: These pictures shows how the posterior distribution of the predictio
 
 <br>
 
-Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression with and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
+Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
@@ -173,10 +173,14 @@ _Figure 10_: Gaussian processes regression using the squared exponential kernel 
 
 <br>
 
+In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x) $$. It’s interesting that beyond the range of observations $(-5, +5)$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
+
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
 </p>
-_Figure 11_: Here the underlying function is $$ \mathrm{sin}(x) $$. I tried both the squared exponential and the periodic kernel for this. It’s interesting that beyond the range of observations the periodic kernel was able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond the range of observations. This is where our prior knowledge would be very helpful in choosing the right kernel. However, in most problems, I think it’d be rare to have to make predictions that much beyond the range of observations, so for the sake of most classification problems, the squared exponential kernel seems to work just fine.
+_Figure 11_: Gaussian processes regression using the squared exponential kernel and the periodic kernel. The observations are based on the function $$ \mathrm{sin}(x) $$. 
+
+<br>
 
 # Conclusion
 Gaussian Process regression is powerful general tool for regression problems. And hopefully you learned a bit more about it in this post. But the truth is, this is only the beginning. I know I can still learn a lot more about the theory of kernels and building my own kernel functions, working in higher dimensional GPs (which is popular in geostatistics), and applying GPs for classification. Gosh that seems like a lot, and it is. 
