@@ -183,7 +183,7 @@ _Figure 11_: Gaussian processes regression using the squared exponential kernel 
 <br>
 
 # Conclusion
-Gaussian Process regression is powerful all-purpose, general tool for regression problems. Unfortunately, one of the reasons it not used as widely is because of the time complexity of the algorithm, which is $$O(n^3)$$ from taking the inverse of a large matrix. 
+Gaussian Process regression is powerful all-purpose, general tool for regression problems. Unfortunately, one of the reasons it not used as widely is because of the time complexity of the algorithm, which is $$O(n^3)$$ time from taking the inverse of a large matrix. 
 
 Hopefully, though, you learned a bit more about Gaussian Process Regression in this post. And one exciting thing is that this is only the beginning. I know I can still learn a lot more about the theory of kernel functions and building my own kernels, working with higher dimensional GPs, and applying Gaussian Processes for classification. It’s long road ahead.
 
