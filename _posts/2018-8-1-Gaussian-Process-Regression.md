@@ -53,7 +53,7 @@ _Figure 1_: Bayesian and Classical (Frequentist) predictions on linear observati
 # Gaussian Processes
 Just before we get to Gaussian Process regression, it's obviously important to understand Gaussian processes (GPs).
 
-**Gaussian processes** are defined as a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed! An intuitive way to think of them are as infinite dimensional extensions of the multivariate Gaussian distribution. Okay, maybe that's not so intuitive. It's actually quite hard for me to think of multivariate Gaussians in 2 or 3 dimensions, and I can't even imagine what they're like in infinite dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
+The definition of **Gaussian processes** is that they are a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed. In other words, they are the infinite dimensional extensions of the multivariate Gaussian distribution. That's probably hard to imagine; it's hard enough for me to think of multivariate Gaussians in 3 dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0, k( x, x ) ) $$ 
@@ -63,7 +63,7 @@ Thinking of Gaussian Processes this way allows us see them as distributions over
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$ 
 
-Just forpreciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
+Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
 
 One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu, \sigma^2).$$ When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). If you play around with this more, you’ll begin to notice that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to 0.
 
