@@ -8,16 +8,18 @@ tags:
 
 Such a big sounding name! 
 
-I remember the first time I heard about Gaussian Processes. It was the summer of 2016, while I was at CERN, and another student was working on a project using Gaussian Processes. I remember him sounding very smart talking about "kernel functions" and other stuff and thinking I could never understand that. Well, here I am - two years later. And with a better understanding of Gaussian Processes and  regression. Hopefully it all makes sense to you.
+I remember the first time I heard about Gaussian Processes. It was the summer of 2016, while I was at CERN, and another student was working on a project using Gaussian Processes. I remember him sounding very smart talking about "kernel functions" and other stuff and thinking I could never understand that. Well, here I am - two years later. I think I have a better understanding of Gaussian Processes and  regression, so hopefully this all makes sense to you.
 
-Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's very powerful, much stronger than normal linear regression. But, before we go more into it, there are some concepts you should be familiar with if you want to fully appreciate and understand GPR. In particular, you should know about the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t possibly substitute for a more thorough reading of these topics.
+Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's very powerful, much stronger than normal linear regression. The most well known application of GPR is in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
 
-The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. The multivariate Gaussian distributions is simply an extension of the univariate Gaussian distribution to $$n$$ dimensions. If a univariate Gaussian desribes one random variable, then a multivariate Gaussian describes an entire vector of random variables. However, it doesn't just describe the behavior of each component, is also describes how the components vary with each other.
+Some prerequisite concepts you should know in order to better understand GPR are the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t possibly substitute for a more thorough reading of these topics.
+
+The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. The multivariate Gaussian distributions is simply an extension of the univariate Gaussian distribution to $$n$$ dimensions. Just like a univariate Gaussian desribes one random variable, a multivariate Gaussian describes an entire vector of random variables. However, it doesn't just describe the behavior of each component, is also describes how the components vary with each other.
 
 The probability density function (PDF) of a set of random variables $$ x \in {\rm I\!R}^n $$ that are distributed by a multivariate Gaussian with mean $$ \mu \in {\rm I\!R}^n $$ and positive semi-definite (i.e. non-negative eigenvalues) covariance $$ \Sigma \in {\rm I\!R}^{n \times n} $$ is:
 <p> $$p(x; \mu, \Sigma) = \dfrac{1}{\sqrt{ (2\pi)^n |\Sigma|}} \mathrm{exp} ( - \dfrac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) ) $$ </p>
 
-One important important property of multivariate Gaussians that we’ll need for GP regression is the _conditioning property_ and the _additive property_. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
+Some important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x = \begin{bmatrix} x_a \\ x_b \end{bmatrix} $$ where $$ x_a = \begin{bmatrix} x_1 \\ . \\ . \\ x_k \end{bmatrix} $$ and $$ x_b = \begin{bmatrix} x_{k+1} \\ . \\ . \\ x_n \end{bmatrix} $$, then
@@ -44,7 +46,7 @@ The next concept that's useful is **Bayesian linear regression**. Without gettin
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
 </p>
-_Figure 1_: Bayesian and Classical (Frequentist) predictions on linear observations. Both are very similar, but one advantage of the Bayesian approach is the uncertainty we get in our prediction. In the figure, the shaded region represents 2 standard deviations above and below the prediction.
+_Figure 1_: Bayesian and Classical (Frequentist) predictions on linear observations. Both are very similar, but one advantage of the Bayesian approach is that it gives the distribution of our prediction. In the figure, the shaded region represents 2 standard deviations above and below the prediction.
 
 <br>
 
