@@ -74,28 +74,30 @@ _Figure 2_: Probability distribution for a Gaussian distribution with variance 1
 
 <br>
 
-In a similar manner, we can sample a function from a Gaussian Process. And, when we sample a function from a GP, the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. This isn't exactly analogous to the univariate Gaussian distribution though, because the shape of the distribution for a GP doesn't necessarily change. But hopefully you can get a sense that the types of things we get from sampling are different for different variances/kernels.  
+In a similar manner, we can sample a function from a Gaussian Process. And, when we sample a function from a GP, the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. This isn't exactly analogous to the univariate Gaussian distribution though, because the shape of the distribution for a GP doesn't necessarily change with different kernels. But hopefully you can get a sense that the types of things we get from sampling are different for different variances/kernels.  
 
-In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0 $$ , and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. In each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP.
+In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0,$$ and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. I'll show you pictures of functions sampled from 5 different kernels, and in each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
+
+<br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
 </p>
-_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions!
+_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions! So we see here how GPs can be reduced to simple univariate Gaussian distributions.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
-_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ In fact, the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, t). $$
+_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ It turns out that the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, x). $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
 </p>
-_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. In fact, they’re infinitely differential at every point. In this figure, $$ l=1 $$, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
+_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. These functions are supposed to be infinitely differential at every point. In this figure, the characteristic length scale $$ l $$ is set to 1, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
 
 <br>
 
@@ -113,7 +115,7 @@ _Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x
 
 <br>
 
-Another point I forgot to make, and which I didn’t show in the figures, is that different hyperparameters are associated with each of these kernels can effect the types of functions sampled. For example, in the periodic kernel $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would result in functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would result in functions with lower frequencies. These artifacts of hyperparameters are present in all the kernel functions shown above.
+Each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would give functions with lower frequencies. This may not be totally relevant, but it's nice to know.
 
 <br>
 
