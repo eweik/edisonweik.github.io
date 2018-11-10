@@ -8,18 +8,11 @@ tags:
 
 Such a big sounding name! 
 
-I remember the first time I heard about Gaussian Processes. It was the summer of 2016, while I was at CERN, and another student was working on a project using Gaussian Processes. I remember him sounding very smart talking about "kernel functions" and other stuff and thinking I could never understand that. Well, here I am - two years later. I think I have a better understanding of Gaussian Processes and  regression, so hopefully this all makes sense to you.
+Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's a pretty powerful regression method, stronger than normal linear regression. Some of its more well known applications are in Brownian motion, which describes the motion of particle in a fluid, and in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
 
-Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's very powerful, much stronger than normal linear regression. The most well known application of GPR is in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
+Some prerequisite concepts you should know are the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t substitute a more thorough reading of these topics.
 
-Some prerequisite concepts you should know in order to better understand GPR are the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t possibly substitute for a more thorough reading of these topics.
-
-The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. The multivariate Gaussian distributions is simply an extension of the univariate Gaussian distribution to $$n$$ dimensions. Just like a univariate Gaussian desribes one random variable, a multivariate Gaussian describes an entire vector of random variables. However, it doesn't just describe the behavior of each component, is also describes how the components vary with each other.
-
-The probability density function (PDF) of a set of random variables $$ x \in {\rm I\!R}^n $$ that are distributed by a multivariate Gaussian with mean $$ \mu \in {\rm I\!R}^n $$ and positive semi-definite (i.e. non-negative eigenvalues) covariance $$ \Sigma \in {\rm I\!R}^{n \times n} $$ is:
-<p> $$p(x; \mu, \Sigma) = \dfrac{1}{\sqrt{ (2\pi)^n |\Sigma|}} \mathrm{exp} ( - \dfrac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) ) $$ </p>
-
-Some important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
+The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. The important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x = \begin{bmatrix} x_a \\ x_b \end{bmatrix} $$ where $$ x_a = \begin{bmatrix} x_1 \\ . \\ . \\ x_k \end{bmatrix} $$ and $$ x_b = \begin{bmatrix} x_{k+1} \\ . \\ . \\ x_n \end{bmatrix} $$, then
