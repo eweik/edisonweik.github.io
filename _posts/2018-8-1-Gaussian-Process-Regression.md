@@ -69,35 +69,35 @@ In determining the shape of the function we sample, the covariance function $$ k
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
 </p>
-_Figure 3_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions! So we see here how GPs can be reduced to simple univariate Gaussian distributions.
+_Figure 2_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is just like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are functions! So we see here how GPs can be reduced to simple univariate Gaussian distributions.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
-_Figure 4_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ It turns out that the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, x). $$
+_Figure 3_: The functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ It turns out that the distribution of $$ f(x) $$ is distributed at $$ x $$ according to $$ x \sim \mathcal{N} (0, x). $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
 </p>
-_Figure 5_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. These functions are supposed to be infinitely differential at every point. In this figure, the characteristic length scale $$ l $$ is set to 1, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
+_Figure 4_: The functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. These functions are supposed to be infinitely differential at every point. In this figure, the characteristic length scale $$ l $$ is set to 1, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_symmetric.png" width="600">
 </p>
-_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ t = 0. $$
+_Figure 5_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ t = 0. $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_periodic.png" width="600">
 </p>
-_Figure 7_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp} ( - \dfrac{2}{l^2} \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
+_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp} ( - \dfrac{2}{l^2} \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
 
 <br>
 
@@ -157,39 +157,39 @@ var_hat = covar_hat.diagonal()
 
 <br>
 
-Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 8 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the variance shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 7 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the variance shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
 </p>
-_Figure 8_: These pictures shows how the posterior distribution of the prediction changes as more observations are made. The GP here uses the squared exponential kernel.
+_Figure 7_: These pictures shows how the posterior distribution of the prediction changes as more observations are made. The GP here uses the squared exponential kernel.
 
 <br>
 
-Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 9 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
+Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 8 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
 </p>
-_Figure 9_: This plot shows GP regression with a linear kernel o observations corresponding to a noisy $$f(x) = x.$$
+_Figure 8_: This plot shows GP regression with a linear kernel o observations corresponding to a noisy $$f(x) = x.$$
 
 <br>
 
-In Figure 10 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x). $$ Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
+In Figure 9 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x). $$ Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
 </p>
-_Figure 10_: Gaussian processes regression using the squared exponential kernel and the symmetric kernel. The observations are based on the function $$ f(x) = x \mathrm{sin} (x). $$
+_Figure 9_: Gaussian processes regression using the squared exponential kernel and the symmetric kernel. The observations are based on the function $$ f(x) = x \mathrm{sin} (x). $$
 
 <br>
 
-In Figure 11 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x). $$ It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
+In Figure 10 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x). $$ It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
 </p>
-_Figure 11_: Gaussian processes regression using the squared exponential kernel and the periodic kernel. The observations are based on the function $$ \mathrm{sin}(x) .$$
+_Figure 10_: Gaussian processes regression using the squared exponential kernel and the periodic kernel. The observations are based on the function $$ \mathrm{sin}(x) .$$
 
 <br>
 
