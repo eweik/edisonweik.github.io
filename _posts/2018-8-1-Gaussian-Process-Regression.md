@@ -48,7 +48,7 @@ Just before we get to Gaussian Process regression, it's obviously important to u
 
 **Gaussian processes** are formally defined a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ (normally time or space) from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed.
 
-In theory, these sets can be infinite in size since the index time and space can go on infinitely and therefore we an think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
+In theory, these sets can be infinite in size since the index variable (time or space) can go on infinitely and therefore we can think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0, k( x, x ) ) $$ 
@@ -58,20 +58,11 @@ Thinking of Gaussian Processes as infinite dimensional extensions of multivariat
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$ 
 
-Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function.
+Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function to have a Gaussian Process.
 
-One way I like to think about them is by first considering the Normal Distribution $$ \mathcal{N} ( \mu, \sigma^2).$$ When we sample a number $$ x \sim \mathcal{N} (0, 1) $$, the probability distribution for the possible values of $$ x $$ is just a standard bell curve. But, when we sample $$ x \sim \mathcal{N} (0, 10) $$, then the probability distribution for values of $$ x $$ is a much wider and shorter shaped bell curve (see figure 2). The more you play around with this, the more you’ll see that the shape of the normal distribution is ultimately determined by the variation parameter $$ \sigma^2 $$. The larger $$ \sigma^2 $$ is, the wider the distribution is and the more likely it is that we’ll sample a number that is not close to $$ \mu, $$ (0 in this case).
+In the same way that we can sample a random vector from a multivariate Normal distribution, we can sample a random function from a Gaussian distribution. Note the difference here: a vector is finite-sized in how we treat them, but a function is a mapping with a potentially infinite size codomain. And just like the types of vectors we get from a multivariate Normal distribution are determined by its mean vector and covariance matrix, the types of functions we get from a Gaussian Process are determined by the mean function $$ m( \cdot ) $$ and the covariance function $$ k( \cdot, \cdot ) .$$
 
-<p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/normal.png" width="600">
-</p>
-_Figure 2_: Probability distribution for a Gaussian distribution with variance 1 on the left and variance 10 on the right.
-
-<br>
-
-In a similar manner, we can sample a function from a Gaussian Process. And, when we sample a function from a GP, the types of functions that we are likely to get is ultimately determined by the kernel or covariance function $$ k( \cdot, \cdot ) $$. This isn't exactly analogous to the univariate Gaussian distribution though, because the shape of the distribution for a GP doesn't necessarily change with different kernels. But hopefully you can get a sense that the types of things we get from sampling are different for different variances/kernels.  
-
-In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0,$$ and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. I'll show you pictures of functions sampled from 5 different kernels, and in each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
+In determining the shape of the function we sample, the covariance function $$ k( \cdot, \cdot ) $$ is much more interesting than the mean function $$ m( \cdot ) .$$ In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0,$$ and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. I'll show you pictures of functions sampled from 5 different kernels, and in each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
 
 <br>
 
