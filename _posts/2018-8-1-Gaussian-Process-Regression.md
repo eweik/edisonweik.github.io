@@ -106,9 +106,9 @@ Each of these kernels has different hyperparameters associated with them that ca
 <br>
 
 # Gaussian Process Regression
-Finally, we arrive at Gaussian Process Regression. In these types of problems we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. It is important to assume that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
+Finally, we arrive at Gaussian Process Regression. In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. We'll assume, and this is important, that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
 
-The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f({\bf x}) $$ was then we wouldn’t need to do GP regression because we could just plug in our future ’s and get a perfect prediction. Unfortunately, we don’t know $$ f({\bf x}) $$. So, what we’ll do is sample some functions from a Gaussian Process and go from there.
+The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f(\cdot) $$ was, then we wouldn’t need to do GP regression because we could just plug in our future $$x$$’s in $$ f(\cdot) $$ and get a perfect prediction. Unfortunately, we don’t know $$ f(\cdot) $$ . So, what we’ll do is sample some functions from a Gaussian Process and go from there.
 
 In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
 
