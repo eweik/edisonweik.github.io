@@ -101,7 +101,7 @@ _Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x
 
 <br>
 
-A cool fact is that each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$ in figure 7, making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller $$ \alpha $$ would give functions with lower frequencies. This is beyond the scope of this short post, but it's nice to know for those interested.
+A cool fact is that each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel, $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$, in figure 7, the associated hyperparameter is $$ \alpha .$$ Making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller values of $$ \alpha $$ would give functions with lower frequencies. The details of these kernel functions and their hyperparameters are beyond the scope of this post, but I thought I would mention for those interested.
 
 <br>
 
