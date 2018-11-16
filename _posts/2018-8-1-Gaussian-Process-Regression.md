@@ -159,7 +159,7 @@ var_hat = covar_hat.diagonal()
 
 <br>
 
-Just for you to see an example of Gaussian process regression (with a squared exponential kernel) in work, Figure 7 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes slightly and the variance shrinks near the region at that point. Subsequent observations produce better predictions and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+To see a cool visual of Gaussian process regression (with a squared exponential kernel) in work, Figure 7 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes to accomodate the new observation and the variance shrinks near the region at that point. Subsequent observations produce bigger changes and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
@@ -196,9 +196,10 @@ _Figure 10_: Gaussian processes regression using the squared exponential kernel 
 <br>
 
 # Conclusion
-Gaussian Process regression is powerful all-purpose, general tool for regression problems. Unfortunately, one of the reasons it not used as widely is because of the time complexity of the algorithm, which is $$O(n^3)$$ time from taking the inverse of a large matrix. 
+Gaussian Process regression is powerful all-purpose, general tool for regression problems. Although I didn't show it here, GPR in geostatistics (where it's 2-dimensional) is particularly cool visually. It makes me think of GPR as a tool to _fill in the blanks_ in between observations for continuous setting.
 
-Hopefully, though, you learned a bit more about Gaussian Process Regression in this post. And one exciting thing is that this is only the beginning. I know I can still learn a lot more about the theory of kernel functions and building my own kernels, working with higher dimensional GPs, and applying Gaussian Processes for classification. It’s long road ahead.
+Unfortunately, one of the reasons it not used as widely is because of the time complexity of inverting the covariance matrix, which takes $$O(n^3)$$ time. It doesn't seem like think this will be resolved anytime soon, so GPR may never reach the popularity of more efficient algorithms like linear regression or SVMs. But it's still cool to see what powerful methods are out there.
+
 
 ### References
 * Carl E. Rasmussen and Christopher K. I. Williams. Gaussian Processes for Machine Learning. MIT Press, 2006. Online: [http://www.gaussianprocess.org/gpml/](http://www.gaussianprocess.org/gpml/)
