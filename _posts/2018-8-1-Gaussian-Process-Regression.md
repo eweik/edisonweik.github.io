@@ -48,12 +48,12 @@ Just before we get to Gaussian Process regression, it's obviously important to u
 
 **Gaussian processes** are formally defined a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ (normally time or space) from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed.
 
-Think of them as the infinite dimensional extensions of the multivariate Gaussian distribution. That's probably hard to imagine; it's hard enough for me to think of multivariate Gaussians in 3 dimensions. Looking at the figures below can hopefully give you a better visualization of them and fortunately, when we consider only a finite subset of a GP we can treat them as multivariate Gaussian:
+In theory, these sets can be infinite in size since the index time and space can go on infinitely and therefore we an think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0, k( x, x ) ) $$ 
 
-Thinking of Gaussian Processes this way allows us see them as distributions over random functions. This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) .$$ So another way to denote $$ f $$ is as
+Thinking of Gaussian Processes as infinite dimensional extensions of multivariate Gaussians allows us see them as distributions over random functions. This distribution is specified by a mean function $$ m( \cdot ) $$ and a covariance function $$ k( \cdot, \cdot ) .$$ So another way to denote $$ f $$ is as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$ 
