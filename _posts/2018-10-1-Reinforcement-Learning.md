@@ -17,7 +17,7 @@ The paper I talk about is *Recurrent Models of Visual Attention* by Mnih, Heess,
 
 ## Model & Method
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent-attention-model/model.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/model.png" width="600">
 </p>
 _Figure 1_: 
 **A) Glimpse sensor** that takes an image $$x$$ and a location $$l_{t-1}$$ and returns glimpses $$\rho$$ of image at the given location. 
@@ -37,11 +37,12 @@ Figure 1 shows the basic framework of the RAM (Recurrent Attention Model, what t
 Essentially, they use an RNN network that takes in an image, sequentially gathers information about the image using glimpses from different parts of the image, and then classifies the image. 
 
 #### Training Procedure
-The objective in this problem is to maximize the expected total reward, i.e. find $$\theta^* = {\rm arg\max}_\theta E_{p(s_{1:T};\theta) \Big[  \Sigma_{t=1}^T r_t \Big]$$. Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ is the distribution of possible interaction sequences. 
+The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = {\rm arg\max}_\theta E_{p(s_{1:T};\theta) \Big[ \Sigma_{t=1}^T r_t \Big] $$. Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ is the distribution of possible interaction sequences. 
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) | s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
 
-$$\nabla_\theta J(\theta) = \Sum^T_{t=1} E_{p(s_{1:T};\theta)} [\nabla_\theta \log \pi ( a_t | s_{1:T} ; \theta ) (R - b_t)] \approx \dfrac{1}{M} \Sum^M_{i=1} \Sum^T_{t=1} [\nabla_\theta \log \pi ( a^i_t | s^i_{1:T} ; \theta ) (R^i - b_t)] $$
+$$\nabla_\theta J(\theta) = \Sum^T_{t=1} E_{p(s_{1:T};\theta)} [\nabla_\theta \log \pi ( a_t | s_{1:T} ; \theta ) (R - b_t)] $$
+$$ \ \ \ \ \ \ \ \ \ \ \ \ \ \approx \dfrac{1}{M} \Sum^M_{i=1} \Sum^T_{t=1} [\nabla_\theta \log \pi ( a^i_t | s^i_{1:T} ; \theta ) (R^i - b_t)] $$
 
 One note: the $$b_t$$ term is the baseline reward. It’s generally added in policy gradient to reduce the variance of the gradient, which helps in training policies. 
 
@@ -55,30 +56,32 @@ My descriptions in this section are brief overviews of the entire model and meth
 My goal was to reproduce the results from this paper. Specifically, I wanted to reproduce the baseline and best results with the MNIST dataset and the cluttered translated MNIST dataset. This involved writing the code that created the network and training the network. My code is available on my GitHub and I trained it on a GPU from Google Colab. 
 
 #### MNIST results - Baseline (FC & Conv Net) and RAM 
+<div align="justify">
 Acc Error for 28 by 28 MNIST 
-|                               | Mnih et al.   |       Me    |
-| ----------------------------- |:-------------:| -----------:|
+| Networks  | Mnih et al. | Me |
+| --- | --- | --- |
 | FC Baseline                   |  $$ 1.69% $$  | $$ 1.63% $$ |
 | Convolutional Baseline        |  $$ 1.21% $$  | $$ 1.51% $$ |
 | RAM, 7 glimpses, 8x8, 1 scale |  $$ 1.07% $$  | $$ 1.55% $$ |
+</div>
 
 #### Cluttered Translated MNIST - - Baseline (FC & Conv Net) and RAM
 The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, the translated such that the digit is placed at a random location, and then cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
 
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent-attention-model/cluttered_translated_MNIST.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/cluttered_translated_MNIST.png" width="600">
 </p>
 _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST images as described in the original paper. I generated these images by first placing an MNIST digit in a random location on a 60 by 60 blank image and then adding random 8 by 8  sub patches from other random MNIST digits to random locations of the image.
 
 <br>
-
+<div align="justify">
 Acc Error for 60 by 60 cluttered Translated MNIST 
-|                                  | Mnih et al.   |       Me     |
-| -------------------------------- |:-------------:| ------------:|
+| Networks  | Mnih et al. | Me |
+| --- | --- | --- |
 | FC Baseline                      |  $$ 11.69% $$ | $$ 12.90% $$ |
 | Convolutional Baseline           |  $$ 8.09% $$  | $$ 8.59% $$  |
 | RAM, 8 glimpses, 12x12, 3 scales |  $$ 4.04% $$  | $$ 6.61% $$  |
-
+</div>
 <br>
 
 ##### Thoughts on performance
