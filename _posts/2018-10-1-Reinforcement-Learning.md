@@ -5,8 +5,7 @@ data: 2018-12-01 12:00:00
 category: 
 - reinforcement learning
 - computer vision
-- paper
-- reproduction
+- paper reproduction
 tags:
 ---
 
