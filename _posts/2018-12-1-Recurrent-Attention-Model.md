@@ -38,7 +38,7 @@ Essentially, they use an RNN network that takes in an image, sequentially gather
 
 #### Training Procedure
 
-The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = \text{arg max}_\theta E_{p(s_{1:T} ; \theta)} \lbrack \sum^T_{t=1} r_t \rbrack. $$ Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
+The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = \text{arg max}_\theta E_{p(s_{1:T} ; \theta)} \lbrack \sum^T_{t=1} r_t \rbrack. $$ Here $$s_{1:t} = x_1, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) \vert s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
 
@@ -62,7 +62,7 @@ My goal was to reproduce the results from this paper. Specifically, I wanted to 
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resA.png" width="600">
 </p>
 
-#### Cluttered Translated MNIST - - Baseline (FC & Conv Net) and RAM
+#### Cluttered Translated MNIST - Baseline (FC & Conv Net) and RAM
 The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, the translated such that the digit is placed at a random location, and then cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
 
 <p align="center">
