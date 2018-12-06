@@ -1,15 +1,12 @@
 ---
 layout: post
-title: Recurrent Attention Models: 
+title: Recurrent Attention Models
 data: 2018-12-01 12:00:00 
 category: 
-- reinforcement learning
-- computer vision
-- paper reproduction
 tags:
 ---
 
-A look at an applicaiton of reinforcement learning in computer vision!
+A look at an application of reinforcement learning in computer vision!
 
 ## Intro
 Hello world! Since I’m still a beginning blogger, I’m going to try something new for this post. Instead of introducing and explaining a topic, I’m going to talk about a research paper I recently read and whose results I tried to reproduce. Thank you for reading and I hope you find this as compelling as I do…
