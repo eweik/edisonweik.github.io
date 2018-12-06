@@ -37,7 +37,7 @@ Figure 1 shows the basic framework of the RAM (Recurrent Attention Model, what t
 Essentially, they use an RNN network that takes in an image, sequentially gathers information about the image using glimpses from different parts of the image, and then classifies the image. 
 
 #### Training Procedure
-The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = {\rm arg max}_\theta E_{p(s_{1:T}; \theta) ( \Sigma_{t=1}^T r_t ) $$. Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ is the distribution of possible interaction sequences. 
+The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = \textrm{(arg max)}_\theta E_{p(s_{1:T}; \theta) ( \Sigma_{t=1}^T r_t ) $$. Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ is the distribution of possible interaction sequences. 
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) | s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
 
