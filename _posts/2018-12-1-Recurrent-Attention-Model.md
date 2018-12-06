@@ -37,6 +37,7 @@ Figure 1 shows the basic framework of the RAM (Recurrent Attention Model, what t
 Essentially, they use an RNN network that takes in an image, sequentially gathers information about the image using glimpses from different parts of the image, and then classifies the image. 
 
 #### Training Procedure
+
 The objective in this problem is to maximize the expected total reward, i.e. find 
 $$ \theta = arg max_\theta E_{p(s_{1:T}) ; \theta) \lbrack \Sigma_{t=1}^T r_t \rbrack $$.
 Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
