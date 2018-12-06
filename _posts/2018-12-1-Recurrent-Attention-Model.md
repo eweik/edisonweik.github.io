@@ -40,7 +40,7 @@ Essentially, they use an RNN network that takes in an image, sequentially gather
 
 The objective in this problem is to maximize the expected total reward, i.e. find 
 
-$$\ \ \ \ \ \ \ \ \ \ \ \ \ \  \theta = \theta E_{p(s_{1:T}) ; \theta) \lbrack \Sigma_{t=1}^T r_t \rbrack $$
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \  \theta = \text{arg \ max}_\theta E_{p(s_{1:T}) ; \theta) \lbrack \Sigma_{t=1}^T r_t \rbrack $$
 
 Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
 
