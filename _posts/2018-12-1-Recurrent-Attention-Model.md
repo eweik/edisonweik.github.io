@@ -41,7 +41,9 @@ The objective in this problem is to maximize the expected total reward, i.e. fin
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) | s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
 
-$$\nabla_\theta J(\theta) = \Sum^T_{t=1} E_{p(s_{1:T};\theta)} \[ \nabla_\theta \log \pi ( a_t | s_{1:T} ; \theta ) (R - b_t) \] \approx \dfrac{1}{M} \Sum^M_{i=1} \Sum^T_{t=1} \[ \nabla_\theta \log \pi ( a^i_t | s^i_{1:T} ; \theta ) (R^i - b_t) \] $$
+$$\nabla_\theta J(\theta) = \Sigma^T_{t=1} E_{p(s_{1:T};\theta)} ( \nabla_\theta \log \pi ( a_t | s_{1:T} ; \theta ) (R - b_t) ) $$
+
+$$ \ \ \ \ \ \approx \dfrac{1}{M} \Sigma^M_{i=1} \Sigma^T_{t=1} ( \nabla_\theta \log \pi ( a^i_t | s^i_{1:T} ; \theta ) (R^i - b_t) ) $$
 
 One note: the $$b_t$$ term is the baseline reward. It’s generally added in policy gradient to reduce the variance of the gradient, which helps in training policies. 
 
