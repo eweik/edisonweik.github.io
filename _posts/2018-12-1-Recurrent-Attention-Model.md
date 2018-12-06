@@ -38,7 +38,7 @@ Essentially, they use an RNN network that takes in an image, sequentially gather
 
 #### Training Procedure
 The objective in this problem is to maximize the expected total reward, i.e. find 
-
+$$ \theta = arg max_\theta E_{p(s_{1:T}; \theta) \lbrack \Sigma_{t=1}^T r_t \rbrack. $$ 
 Here $$s_{1:t} = x, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) \vert s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
