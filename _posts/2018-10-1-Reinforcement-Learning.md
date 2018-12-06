@@ -56,14 +56,9 @@ My descriptions in this section are brief overviews of the entire model and meth
 My goal was to reproduce the results from this paper. Specifically, I wanted to reproduce the baseline and best results with the MNIST dataset and the cluttered translated MNIST dataset. This involved writing the code that created the network and training the network. My code is available on my GitHub and I trained it on a GPU from Google Colab. 
 
 #### MNIST results - Baseline (FC & Conv Net) and RAM 
-<div align="justify">
-Acc Error for 28 by 28 MNIST 
-| Networks  | Mnih et al. | Me |
-| --- | --- | --- |
-| FC Baseline                   |  $$ 1.69% $$  | $$ 1.63% $$ |
-| Convolutional Baseline        |  $$ 1.21% $$  | $$ 1.51% $$ |
-| RAM, 7 glimpses, 8x8, 1 scale |  $$ 1.07% $$  | $$ 1.55% $$ |
-</div>
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resA.png" width="600">
+</p>
 
 #### Cluttered Translated MNIST - - Baseline (FC & Conv Net) and RAM
 The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, the translated such that the digit is placed at a random location, and then cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
@@ -74,14 +69,9 @@ The cluttered translated MNIST dataset is a customized dataset where an original
 _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST images as described in the original paper. I generated these images by first placing an MNIST digit in a random location on a 60 by 60 blank image and then adding random 8 by 8  sub patches from other random MNIST digits to random locations of the image.
 
 <br>
-<div align="justify">
-Acc Error for 60 by 60 cluttered Translated MNIST 
-| Networks  | Mnih et al. | Me |
-| --- | --- | --- |
-| FC Baseline                      |  $$ 11.69% $$ | $$ 12.90% $$ |
-| Convolutional Baseline           |  $$ 8.09% $$  | $$ 8.59% $$  |
-| RAM, 8 glimpses, 12x12, 3 scales |  $$ 4.04% $$  | $$ 6.61% $$  |
-</div>
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resB.png" width="600">
+</p>
 <br>
 
 ##### Thoughts on performance
