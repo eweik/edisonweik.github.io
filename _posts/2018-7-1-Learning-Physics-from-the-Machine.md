@@ -3,14 +3,16 @@ layout: post
 title: Learning Physics from the Machine
 data: 2018-07-01 12:00:00 
 category: 
-tags:
+tags: 
+- research
+- physics
 ---
 <div align="justify">
 Hello world! 
 	
 <br><br>
 
-Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do what I want with (whatever that is). 
+Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do with it what I want (whatever that is). 
 
 <br><br>
 
@@ -69,20 +71,16 @@ These are tricky questions to answer. Neural networks work well, but there are s
 
 <br><br>
 
-The objective of the work which this post is based on is to interpret what the neural network has learned in physical terms. The motivation is that maybe physicists can gain insight and possibly learn something new about the nature of the physics involved from neural nets.
+The objective of the work which this post is based on is to interpret what the neural network has learned in physics terms. The motivation is that maybe physicists can gain insight and possibly learn from neural nets something new about the nature of the physics of high energy collisions.
 </div>
 
 # Translating from machine to human
 <div align="justify">
-This is the tricky part. Taking the neural network output and translating it into something physicists can understand. 
+The first part of this project involves translating the output of a neural net (which is just a linear mapping from the last layer) into something physicists can understand. In this particular work, we looked at the problem of classifying jets/streams of particles using substructure information in pixel images.
 
 <br><br>
 
-For this particular work, we looked at the problem of classifying jets of particles using substructure information. Essentially, the neural network would take an image of the collision and classify it as either signal or background. The neural network makes these decisions using a set of numbers (weights) that it learns to transform the input into an output. Thus far, physicists can not make sense out of these weights and transformation; in fact, no one, not just physicists, can really understand these things with great insight. They just happen to work and that’s that.
-
-<br><br>
-
-So, we want to take the information from the neural net and translate it into something physicists can understand. Based on certain arguments and assumptions in quantum physics involving particle collisions which are beyond my scope, physicists can understand these jet images through functions involving the momentum fraction in each pixel in the jet. The first three terms in this family of functions is expressed as:
+Based on certain arguments and assumptions in quantum physics which are frankly above my head, physicists can understand these jet images through functions involving the momentum fraction in each pixel of the image. The first three terms in this family of functions is expressed as:
 
 <br>
 </div>
@@ -101,11 +99,11 @@ where the momentum fraction $$z_i$$ of pixel $$i$$ is:
 </p>
 
 <div align="justify">
-So we want to take the information from the neural net and compare it to these functions. If they are similar, this could suggest that the neural network is learning something related to the physics of these functions. Physicists could then explore these functions and possibly learn more about the nature of these collisions!
+So we want to take the output from the neural net and compare it to these functions. If they are similar, this suggests that the neural network is learning something related to the physics of these functions. Physicists could then explore these functions and possibly learn something new.
 
 <br><br>
 
-But how do we compare two functions? We need a metric that reflects the task of using the information from the low level data (image) for classification. However, it must also be invariant to non-linear 1-to-1 transformations of the two functions, because of the non-linear nature of neural networks. So, we consider the decision surfaces defined by the threshold on the function output. By decision surface, we mean the hyperplane which separates what the function believes to be signal and background. The space where the hyperplane is defined would depend on the function or neural net at hand; but the important part is the threshold for which is separates signal and background. Specifically, we consider two functions similar if, for any pair of points, they produce the same signal-to-background ordering. This is expressed through what we call the <i>discriminant ordering</i> between two functions, <i>f</i> and <i>g</i>, for a pair of points <i>x</i> and <i>x'</i>:
+To compare these values, we needed a metric that reflected the task of using the information from the low level data (image) for classification, but, was also invariant to non-linear 1-to-1 transformations, because of the non-linearity of neural networks. So, we considered the decision surfaces of the function output, that is, the hyperplane which separates what the function believes to be signal and background. The space where the hyperplane is defined would depend on the function or neural net at hand; but the important part is the threshold for which is separates signal and background. Specifically, we consider two functions similar if, for any pair of points, they produce the same signal-to-background ordering. This is expressed through what we call the <i>discriminant ordering</i> between two functions, <i>f</i> and <i>g</i>, for a pair of points <i>x</i> and <i>x'</i>:
 
 </div>
 
@@ -114,7 +112,7 @@ But how do we compare two functions? We need a metric that reflects the task of 
        width="500">
 </p>
 
-For the discriminant ordering over the entire sample, we use integration:
+For the discriminant ordering over the entire sample, integrate:
 
 <p align="center">
   <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/learning_physics_from_machine/total-DO.png"
