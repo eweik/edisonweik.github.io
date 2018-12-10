@@ -6,7 +6,11 @@ category:
 tags:
 ---
 <div align="justify">
-Hello world! Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do what I want with (whatever that is). 
+Hello world! 
+	
+<br><br>
+
+Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do what I want with (whatever that is). 
 
 <br><br>
 
@@ -14,7 +18,7 @@ In this first post I'll talk about a project I worked on as an undergrad at UCI 
 
 <br><br>
 
-A lot of particle physics research essentially involves people smashing particles together at very high speeds to see what happens. The more energy a collision has, the more likely we can see something we’ve never seen before. For example, the Higgs Boson, a very important particle for for understanding mass, was discovered in 2013 at the Large Hadron Collider (LHC). These are the types of experiments that help us fathom the most basic components of all matter.
+A lot of particle physics research essentially involves people smashing particles together at very high speeds to see what happens. The more energy a collision has, the more likely we can see something we’ve never seen before. For example, the Higgs Boson, a very important particle for understanding mass, was discovered in 2013 at the Large Hadron Collider (LHC). These are the types of experiments that help us fathom the most basic components of all matter.
 </div>
 
 <br>
@@ -30,20 +34,19 @@ A lot of particle physics research essentially involves people smashing particle
 <br>
 
 <div align="justify">
-However, new and exciting particles are rare. So we have to look at a lot of events (collisions) to possibly see something cool. This is why experiments like the LHC produce approximately 600 million events per second, which is then filtered to around 100-200 events/second for analysis. After some time, that’s a lot of data! 
+These experiments, however, produce a lot of data in order to increase the likelihood of seeing something new. The LHC produces approximately 600 million events per second (which is then filtered to around 100-200 events/second for analysis) and has millions of sensors! That's a lot of data at very high dimensions. 
 
 <br><br>
 
-To classify these events, physicists have come up with their own algorithms that take in the raw data of an event and produce what we will call “high-level engineered variables.” In theory, these high level variables should carry the same information as the raw, or “low level,” data. In this work, the high level variables we look at are:
+To classify these events, physicists have come up with their own algorithms that take in the raw data and produce “high-level engineered variables.” That is, they use their own hueristics for a custom dimensionality reduction algorithm. In this post, the high level variables we look at are:
 
 </div>
 
-<p><p> $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ </p></p>
+<p><p> $$ M_{jet}, \ C_2^{\beta=1}, \ C_2^{\beta=2}, \ D_2^{\beta=1}, \ D_2^{\beta=2}, \ \tau_{21}^{\beta=1} $$ </p></p>
 
 <div align="justify">
-
-But, recent advances in machine learning has shown this to not necessarily be the case. In recent work by <a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a>, neural networks have actually outperformed high level engineered variables for tasks such as classification (figure 2). This suggests that the high level engineered variables do not capture the same information as the low level data and that the algorithms physicists use for these variables are not optimal. The question now becomes: what is the neural network doing differently?
-
+These high level variables should capture the same information as the raw data (low level variables).
+But, recent work has shown this to not necessarily be the case. <a href="https://arxiv.org/abs/1603.09349">Baldi, et al. (2016)</a> showed that deep neural networks (DNNs) trained on raw data outperformed DNNs trained on high level variables in classification (figure 2). So, maybe physics heuristics aren't optimal. New questions start to pop up: What aren't physicists accounting for? What is the neural network doing differently?
 <br><br>
 </div>
 
@@ -62,11 +65,11 @@ But, recent advances in machine learning has shown this to not necessarily be th
 <br>
 
 <div align="justify">
-This, however, is a tricky question to answer. Neural networks work well, but there are many open questions about them. Why do they work so well? What is the neural net learning from the data? Why is it learning that particular thing?
+These are tricky questions to answer. Neural networks work well, but there are still some mysteries about them. Why do they work so well? What structure are they learning? Why that structure?
 
 <br><br>
 
-The objective of this work is to interpret what the neural network has learned in terms that physicists could understand. The motivation for this is to gain insight and possibly learn something new about the nature of the physics involved.
+The objective of the work which this post is based on is to interpret what the neural network has learned in physical terms. The motivation is that maybe physicists can gain insight and possibly learn something new about the nature of the physics involved from neural nets.
 </div>
 
 # Translating from machine to human
