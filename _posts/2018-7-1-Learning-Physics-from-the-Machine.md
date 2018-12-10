@@ -137,26 +137,26 @@ As an example, below is table that shows between the discriminant ordering betwe
 
 # Application: Reduce and orthogonalize
 <div align="justify">
-Now there are a few different approaches our group took to apply the translation method described above to the problem of classifying collisions. The first approach attempts to explain the gap between neural networks trained on the images and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the lost information. The second approach attempts to gain insight into the neural network strategy on the images by mapping it into our space of functions. The third approach looks at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore this more deeply. (For more information on the first two approaches, see the paper.)
+In the final paper, there are three different applications of the translation method described above to the problem of classifying collisions. The first approach attempts to explain the gap between neural nets trained on raw data and the performance of the high level engineered variables by searching for a new high level engineered variable that captures the information discrepancy. The second attempts to gain insight into the neural net strategy on the images by comparing the network output with the space of momentum fraction functions using the discriminant ordering. The third approach looks at the information content in the high level engineered variables by attempting to reduce and orthogonalized them into a minimal set. Since my work involved the last approach, this post will explore this strategy. (For more information on the first two approaches, see the paper.)
 
 <br><br>
 
-My approach was to take the set of high level engineered variables and reduce them to as small a set as necessary that both maintained the original classification power and was orthogonal within the other high level variables. By orthogonal, I mean that they don’t contain the same information about the event, that is, they have a small discriminant ordering between each other.
+My work involved taking the set of high level engineered variables and reducing them to as small a set as possible such that they maintained the same classification power as the total set and were orthogonal with all the other high level variables. When we say that two variables are orthogonal, we mean that they don’t contain the same information about the example, specifically, that they have a small discriminant ordering between each other.
 
 <br><br>
 
 The procedure I used attempts to iteratively replace each of the high level engineered variables with a learned variable that captures its same classification power but minimizes the information overlap with the other variables (see figure 4). The steps for this process are:
 
 <ol type="1">
-  <li>Scan the list variables and select the one which has the largest negative impact on the classification power when it is removed from the set.</li>
+  <li>Scan the list variables and select the one which has the largest negative impact on the classification power when removed from the set.</li>
 	<br>
-  <li>Replace the variable by a neural network (subnet) which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable. This new network now contains a neural network which takes as input 5 high level variables and the output from the subnet (which takes as input the image of the collision) and tries classify the event.</li>
+  <li>Replace the variable by a neural network (subnet) which takes as input the jet image and returns as output a single number, to be later identified as a potential new high level variable. The aggregate network now takes as input 5 high level variables and the output from the subnet (which takes as input the image of the collision) and tries classify the event.</li>
 	<br>
-  <li>Train this new network structure with an adversarial network, which uses the subnet output to attempt to recover the values of the other HL variables. These two networks have adverse loss functions, which pushes the subnet to produce a value that both maximizes its classification strength and its independence from the existing high level variables.</li>
+  <li>Train this network to classify images. In parallel, train an adversarial network, which takes in the subnet output and attempts to learn the values of the 5 other high levels features used to train the first network. These two networks have adverse loss functions, which pushes the subnet to produce a value that both maximizes its classification strength and minimizes its similarity to the other high level variables.</li>
 	<br>
   <li>Freeze the weights in the subnet from step 2. This subnet is will now be considered a high level variable for future iterations. However, it cannot be chosen for replacement in step 1.</li>
 	<br>
-  <li>Repeat this procedure by going back to step 1 until removing HL variables has no impact.</li>
+  <li>Repeat this procedure by going back to step 1 until removing HL variables has no impact on the classification strength.</li>
 </ol>  
 </div>
 
@@ -176,16 +176,16 @@ The procedure I used attempts to iteratively replace each of the high level engi
 <div align="justify">
 I found that of the six high level variables,
 </div>
-<p><p> $$ M_{jet}, C_2^{\beta=2}, C_2^{\beta=1} $$ </p></p>
+<p><p> $$ M_{jet}, \ C_2^{\beta=2}, \ C_2^{\beta=1} $$ </p></p>
 <div align="justify">
-(in this order) were best able to be transformed so as to capture the same classification information from the original six high level variables while being orthogonal to other variables. I used ROC curve AUC as the metric for the variables’ ability for classification ability and discriminant ordering as the metric for orthogonality. The results are (note that hat indicates a learned, orthogonal variable):
+(in this order) were best able to be transformed so as to capture comparable classification information as the original six high level variables while being orthogonal to other variables. I used ROC curve AUCs as the metric for classification strength and discriminant ordering as the metric for orthogonality. The results are (note that hat indicates a learned, orthogonal variable):
 </div>
 
-* $$ M_{jet}, C_2^{\beta=1}, C_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.946
+* $$ M_{jet}, \ C_2^{\beta=1}, \ C_2^{\beta=2}, \ D_2^{\beta=1}, \ D_2^{\beta=2}, \ \tau_{21}^{\beta=1} $$ had an AUC of 0.946
 <br>
-* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2}, D_2^{\beta=1}, D_2^{\beta=2}, \tau_{21}^{\beta=1} $$ had an AUC of 0.940
+* $$ \hat{M}_{jet}, \ \hat{C}_2^{\beta=1}, \ \hat{C}_2^{\beta=2}, \ D_2^{\beta=1}, \ D_2^{\beta=2}, \ \tau_{21}^{\beta=1} $$ had an AUC of 0.940
 <br>
-* $$ \hat{M}_{jet}, \hat{C}_2^{\beta=1}, \hat{C}_2^{\beta=2} $$ had an AUC of 0.906
+* $$ \hat{M}_{jet}, \ \hat{C}_2^{\beta=1}, \ \hat{C}_2^{\beta=2} $$ had an AUC of 0.906
 
 <div align="justify">
 A table listing the discriminant ordering between the three orthogonalized variables and the original high level variables is shown in figure 5.
@@ -204,12 +204,12 @@ A table listing the discriminant ordering between the three orthogonalized varia
 <br>
 
 <div align="justify">
-I show some success in learning high level variables that can both classify and be orthogonal with the other variables. However, the results are not perfect in the sense of perfectly replicating the classifying power of the original high level variables and having zero similarity with the other variables.
+My worked showed some success in learning high level variables that can both classify and be orthogonal with the other variables. However, the results are not perfectly able to replicate the classifying power of the original high level variables and having zero similarity with the other variables.
 	
 <br>
 </div>
 
-After learning our 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the $$\tau_1$$ showed showed no telling results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at points in the parameter space.
+After learning the 3 orthogonal, high level variables, I then compared them to $$\tau$$ functional space as previously defined. The comparison against the $$\tau_1$$ showed showed no telling results. Figure 6 shows the comparison between the orthogonal variables and $$\tau_2$$ at points in the parameter space.
 
 <br>
 
@@ -226,7 +226,7 @@ After learning our 3 orthogonal, high level variables, I then compared them to $
 We see that $$ \hat{M}_{jet} $$ and $$ \hat{C}_2^{\beta=2} $$ have somewhat significant discriminant orderings with points in $$\tau_2$$ space.
 
 <div align="justify">
-The interpretation of the above results is left for theorists. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
+We leave the interpretation of the above results for others. Note: we limit the search in parameter space as shown in the figures due to computational resources. Future work could include exploring larger parts of this space and spaces of higher dimensionality.
 </div>
 
 # Conclusion
