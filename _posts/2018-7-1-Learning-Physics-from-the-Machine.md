@@ -5,11 +5,16 @@ data: 2018-07-01 12:00:00
 category: 
 tags:
 ---
-
-An overview of an undergraduate research project.
-
 <div align="justify">
-In particle physics, people smash particles together at very high speeds to see what happens. The higher the speed, the more likely we can see something we’ve never seen before, a new and exciting discovery. For example, the Higgs Boson, which holds the secret to the nature of mass, was discovered in 2013 at the Large Hadron Collider (LHC). These types of experiments can help tell how us what are the most fundamental components of all matter.
+Hello world! Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do what I want with (whatever that is). 
+
+<br><br>
+
+In this first post I'll talk about a project I worked on as an undergrad at UCI with UCI ATLAS team. It involves some physics and some machine learning, but hopefully I'm not too technical in my descriptions. I'll talk a little bit about the background and then dive into method and results. Bear with me now, I'm only just beginning so there probably be some mistakes some wear, but hopefully not too many. Okay, let's get to it...
+
+<br><br>
+
+A lot of particle physics research essentially involves people smashing particles together at very high speeds to see what happens. The more energy a collision has, the more likely we can see something we’ve never seen before. For example, the Higgs Boson, a very important particle for for understanding mass, was discovered in 2013 at the Large Hadron Collider (LHC). These are the types of experiments that help us fathom the most basic components of all matter.
 </div>
 
 <br>
