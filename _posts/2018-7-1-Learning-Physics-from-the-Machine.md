@@ -231,11 +231,13 @@ We leave the interpretation of the above results for others. Note: we limit the 
 
 # Conclusion
 <div align="justify">
-Neural networks have powerful properties that often perform better at tasks that experts are not perfect at. This is even in the case of classifying collisions of particles at high speeds, which are particularly complex. 
+Neural networks are strong. Often, better at tasks than expert humans. 
 	
 <br><br>
 
-I believe that neural networks can provide insight into these types of complex tasks. We showed how the output of neural networks can be interpreted for physicists to make sense of, for them to possibly learn something new about the physics involved in these collisions. But there is still work ahead. Many questions remain. Understanding the sensitivity to the input and understanding the roles of hidden nodes in the neural network are still ideas not settled. Future work includes exploring these areas to understand what specifically the neural network used from the input to makes its decision and how each hidden layer effects that input to arrive at its decision.
+But, that doesn't mean that humans should just consider physics too hard and let these machines handle all the complicated things. We should be able to use these computers to help provide insight into these complex tasks in order to help augment our own understanding instead of surrendering modalities of thinking. 
+
+In this post, I showed only a small method for how the output of neural networks can be interpreted for physicists to make sense of. But the research involved in neural network interpretation is wide ranging and only growing with time. Future work includes exploring these areas to understand what specifically the neural network used from the input to makes its decision and how each hidden layer effects that input to arrive at its decision. Much progress is still needed. Many questions remain. It's an exciting time in research.
 
 <br>
 </div>
