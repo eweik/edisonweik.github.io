@@ -8,7 +8,7 @@ tags:
 - introduction
 ---
 
-A introduction to gaussian process regression.
+An introduction to gaussian process regression.
 
 In this post, I'm going to try and introduce, in a friendly manner, gaussian process regression (GPR). Gaussian process regression is a powerful all-purpose regression method. Some of its applications are in Brownian motion, which describes the motion of particle in a fluid, and in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
 
@@ -46,11 +46,11 @@ _Figure 1_: Bayesian and Classical (Frequentist) predictions on linear observati
 <br>
 
 # Gaussian Processes
-Just before we get to Gaussian Process regression, it's obviously important to understand Gaussian processes (GPs).
+Before we get to Gaussian Process regression, I'm going to introduce Gaussian processes (GPs).
 
 **Gaussian processes** are formally defined a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ (normally time or space) from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed.
 
-In theory, these sets can be infinite in size since the index variable (time or space) can go on infinitely and therefore we can think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
+These sets can be infinitely sized (think of the index variable - time or space - going on infinitely) and therefore we can think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( x ) \sim \mathcal{N} ( 0, k( x, x ) ) $$ 
@@ -60,11 +60,11 @@ Thinking of Gaussian Processes as infinite dimensional extensions of multivariat
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$ 
 
-Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function to have a Gaussian Process.
+Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function (which means being positive semidefinite) to have a Gaussian Process.
 
-In the same way that we can sample a random vector from a multivariate Normal distribution, we can sample a random function from a Gaussian distribution. Note the difference here: a vector is finite-sized in how we treat them, but a function is a mapping with a potentially infinite size codomain. And just like the types of vectors we get from a multivariate Normal distribution are determined by its mean vector and covariance matrix, the types of functions we get from a Gaussian Process are determined by the mean function $$ m( \cdot ) $$ and the covariance function $$ k( \cdot, \cdot ) .$$
+So, in the same way that we can sample a random vector from a multivariate Normal distribution, we can sample a random function from a Gaussian distribution. Note the difference here: a vector is finite-sized, but a function is a mapping with a potentially infinite size codomain. And just like the types of vectors that we sample from a multivariate Normal distribution are determined by its mean vector and covariance matrix, the types of functions we sample from a Gaussian Process are determined by the mean function $$ m( \cdot ) $$ and the covariance function $$ k( \cdot, \cdot ) .$$
 
-In determining the shape of the function we sample, the covariance function $$ k( \cdot, \cdot ) $$ is much more interesting than the mean function $$ m( \cdot ) .$$ In this post, I’ll only look at Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0,$$ and you should be able to see the effect this has on the functions we get from the examples below and how varying $$ m(\cdot) $$ would affect the types of functions sampled. I'll show you pictures of functions sampled from 5 different kernels, and in each of the figures, I show a picture with one function sampled from the Gaussian Process and another showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
+The covariance function $$ k( \cdot, \cdot ) $$ is much more interesting than the mean function $$ m( \cdot ) .$$ It determines the shape of the function we sample. In this post, I’ll only look at one-dimensional Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0.$$ A non-zero mean function in the 1-dim case would just correspond to a vertical translation of the function. Below, we'll see 5 different kernels, and in each of the figures I show a graph with just one function and another graph showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
 
 <br>
 
