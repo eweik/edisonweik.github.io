@@ -36,7 +36,7 @@ These are a very intuitive results (although the formula for the conditional dis
 
 <br>
 
-The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian inference, some important points about it is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a distribution on the predicted value_! This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_, which normal linear regression does). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
+The next concept that's important is **Bayesian linear regression**. Without getting too involved in the details of Bayesian inference, some important points about it is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a distribution on the predicted value_! This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_, which normal linear regression does). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
@@ -71,39 +71,41 @@ The covariance function $$ k( \cdot, \cdot ) $$ is much more interesting than th
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_number.png" width="600">
 </p>
-_Figure 2_: Functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. In this case, the functions we sample are just constant numbers, but notice how the numbers center around 0 and vary in both directions. This is exactly like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are constant functions! So we see an immediate relation between Gaussian Processes and the univariate Gaussian distribution.
+_Figure 2_: Constant valued functions sampled from a Gaussian Process with a constant kernel $$ k(x_i, x_j) = \sigma^2 $$. Notice how the numbers center around 0 and vary in both directions; this is exactly like sampling a number from Gaussian distribution $$ x \sim \mathcal{N} (0, 1) $$, except here the numbers are constant functions!
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_line.png" width="600">
 </p>
-_Figure 3_: Functions sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$ are just linear functions. Notice, in the picture on the right, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ In fact, the distribution of $$ f(x) $$  at $$ x $$ is distributed according to $$ x \sim \mathcal{N} (0, x). $$
+_Figure 3_: Linear functions are sampled from a Gaussian Process with a linear kernel $$ k(x_i, x_j) = \sigma^2 x_i \cdot x_j $$. Notice, in the right graph, that at each point $$ x $$ the values $$ f(x) $$ center at 0 and vary in proportion to $$ x. $$ That is, $$ f(x) $$ at $$ x = 4 $$ varies much more than at $$ x = 1. $$ The distribution of $$ f(x) $$  at $$ x $$ is distributed according to $$ x \sim \mathcal{N} (0, x). $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_se.png" width="600">
 </p>
-_Figure 4_: Functions sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ) $$ are very smooth functions. These functions are supposedly infinitely differentiable at every point. In this figure, the characteristic length scale $$ l $$ is set to 1, but changing $$ l $$ would result in either smoother (with higher $$ l )$$ or more volative (with smaller $$ l $$) functions.
+_Figure 4_: Smooth functions are sampled from a Gaussian Process with a squared exponential kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp}( -\dfrac{1}{2 l^2}| x_i - x_j |^2 ). $$ . These functions are infinitely differentiable at every point. In this figure, the characteristic length scale $$ l $$ is set to 1, but changing $$ l $$ would result in either more stable (with higher $$ l )$$ or more volatile (with smaller $$ l $$) functions.
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_symmetric.png" width="600">
 </p>
-_Figure 5_: Functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2) $$ are symmetric functions about $$ f(x) = 0. $$
+_Figure 5_: Symmetric functions about $$ f(x) = 0 $$ are sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2). $$
 
 <br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_periodic.png" width="600">
 </p>
-_Figure 6_: The functions sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp} ( - \dfrac{2}{l^2} \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$  are periodic functions.
+_Figure 6_: Periodic functions are sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \sigma^2 \mathrm{exp} ( - \dfrac{2}{l^2} \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) .$$
 
 <br>
 
-A cool fact is that each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel, $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$, in figure 7, the associated hyperparameter is $$ \alpha .$$ Making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller values of $$ \alpha $$ would give functions with lower frequencies. The details of these kernel functions and their hyperparameters are beyond the scope of this post, but I thought I would mention for those interested.
+Each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel, $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$, in figure 7, the associated hyperparameter is $$ \alpha .$$ Making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller values of $$ \alpha $$ would give functions with lower frequencies.
+
+This isn't by any means an exhaustive introduction to Gaussian Processes. But, hopefully this gives you a good intuitive understanding of what they are and some the different things you can do with them. 
 
 <br>
 
