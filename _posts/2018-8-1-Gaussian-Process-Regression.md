@@ -8,13 +8,13 @@ tags:
 - introduction
 ---
 
-Such a big sounding name! 
+A introduction to gaussian process regression.
 
-Gaussian process regression (GPR) is general method for predicting continuous valued outputs. It's a pretty powerful regression method, stronger than normal linear regression. Some of its more well known applications are in Brownian motion, which describes the motion of particle in a fluid, and in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
+In this post, I'm going to try and introduce, in a friendly manner, gaussian process regression (GPR). Gaussian process regression is a powerful all-purpose regression method. Some of its applications are in Brownian motion, which describes the motion of particle in a fluid, and in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
 
-Some prerequisite concepts you should know are the multivariate Gaussian distribution and Bayesian linear regression. I’ll briefly talk about them right now, but I can’t substitute a more thorough reading of these topics.
+Some concepts concept you should know about are the multivariate Gaussian distribution and Bayesian regression. I’ll review them here, but it will only be brief.
 
-The main mathematical structure behind GPR is the **multivariate Gaussian distribution**. The important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
+The main mathematical structure behind GPR is the **multivariate Gaussian distribution**, which is a generalization of the Gaussian (Normal) distribution to multiple dimensions. Two important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. I'll first show the conditioning property. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x = \begin{bmatrix} x_a \\ x_b \end{bmatrix} $$ where $$ x_a = \begin{bmatrix} x_1 \\ . \\ . \\ x_k \end{bmatrix} $$ and $$ x_b = \begin{bmatrix} x_{k+1} \\ . \\ . \\ x_n \end{bmatrix} $$, then
@@ -32,11 +32,11 @@ The additive property says that if $$ x \sim \mathcal{N}( \mu_x, \Sigma_x ) $$ a
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ x + y \sim \mathcal{N}( \mu_x + \mu_y, \Sigma_x + \Sigma_y ) $$
 
-These are a very neat results! So just remember this for now or come back to it if you forget.
+These are a very intuitive results (although the formula for the conditional distribution is cumbersome) that will be very useful when we talk about GPR more.
 
 <br>
 
-The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian linear regression, some important points about BLR is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a posterior distribution of the prediction_! This is in contrast to other methods which return a single value with no account of the possible variance in that value (these other methods use _Maximum Likelihood estimation_). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
+The next concept that's useful is **Bayesian linear regression**. Without getting too involved in the details of Bayesian inference, some important points about it is that you can _use your prior knowledge_ of the dataset to help your predictions and you _get a distribution on the predicted value_! This is in contrast to other methods which return a single value with no account of the possible uncertainty in that value (these other methods use _Maximum Likelihood estimation_, which normal linear regression does). Bayesian linear regression uses _Maximum a Posteriori estimation_ for the full distribution of the output, called the posterior distribution. Figure 1 shows the difference between these two methods.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/regression1.png" width="600">
