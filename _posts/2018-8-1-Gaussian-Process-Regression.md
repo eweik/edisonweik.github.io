@@ -110,7 +110,7 @@ This isn't by any means an exhaustive introduction to Gaussian Processes. But, h
 <br>
 
 # Gaussian Process Regression
-Finally, we arrive at Gaussian Process Regression. In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. We'll assume, and this is important, that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
+In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. We'll assume, and this is important, that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
 
 The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f(\cdot) $$ was, then we wouldn’t need to do GP regression because we could just plug in our future $$x$$’s in $$ f(\cdot) $$ and get a perfect prediction. Unfortunately, we don’t know $$ f(\cdot) $$ . So, what we’ll do is sample some functions from a Gaussian Process and go from there.
 
