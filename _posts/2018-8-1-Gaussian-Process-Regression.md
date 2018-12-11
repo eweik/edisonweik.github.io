@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Gaussian Process Regresssion
+title: Gaussian Process Regression
 data: 2018-08-01 12:00:00 
 category: 
 - introduction
