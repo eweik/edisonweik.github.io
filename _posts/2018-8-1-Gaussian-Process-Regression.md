@@ -92,7 +92,7 @@ _Figure 4_: Smooth functions are sampled from a Gaussian Process with a squared 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gp_symmetric.png" width="600">
 </p>
-_Figure 5_: Symmetric functions about $$ f(x) = 0 $$ are sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2). $$
+_Figure 5_: Symmetric functions about $$ x = 0 $$ are sampled from a Gaussian Process with the kernel $$ k(x_i, x_j) = \mathrm{exp} ( - \alpha ( \mathrm{min}( |x_i - x_j|, |x_i + x_j| ) )^2). $$
 
 <br>
 
