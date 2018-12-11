@@ -105,7 +105,7 @@ _Figure 6_: Periodic functions are sampled from a Gaussian Process with the kern
 
 Each of these kernels has different hyperparameters associated with them that can effect the types of functions sampled. For example, in the periodic kernel, $$ k = \mathrm{exp} ( - \mathrm{sin}^2 ( \alpha \pi (x_i - x_j) ) ) $$, in figure 7, the associated hyperparameter is $$ \alpha .$$ Making $$ \alpha $$ larger would give functions with much higher frequencies of oscillation, while smaller values of $$ \alpha $$ would give functions with lower frequencies.
 
-This isn't by any means an exhaustive introduction to Gaussian Processes. But, hopefully this gives you a good intuitive understanding of what they are and some the different things you can do with them. 
+This isn't by any means an exhaustive introduction to Gaussian Processes. But, hopefully this gives you a good intuitive understanding of what they are and some of the different things you can do with them. 
 
 <br>
 
