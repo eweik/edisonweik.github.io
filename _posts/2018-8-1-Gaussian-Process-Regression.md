@@ -14,6 +14,8 @@ In this post, I'm going to try and introduce, in a friendly manner, gaussian pro
 
 Some concepts concept you should know about are the multivariate Gaussian distribution and Bayesian regression. I’ll review them here, but it will only be brief.
 
+<br>
+
 The main mathematical structure behind GPR is the **multivariate Gaussian distribution**, which is a generalization of the Gaussian (Normal) distribution to multiple dimensions. Two important properties of multivariate Gaussians to know for GPR is the _conditioning property_ and the _additive property_. I'll first show the conditioning property. If we write our random vector $$ x \sim \mathcal{N}( \mu, \Sigma ) \in {\rm I\!R}^{n} $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,6 +52,8 @@ Before we get to Gaussian Process regression, I'm going to introduce Gaussian pr
 
 **Gaussian processes** are formally defined a set of random variables $$ \{ f(x) : x \in X \} $$, indexed by elements $$ x $$ (normally time or space) from some index set $$ X $$, such that any finite subset of this set $$ \{ f(x_1),...,f(x_n) \} $$ is multivariate Gaussian distributed.
 
+<br>
+
 These sets can be infinitely sized (think of the index variable - time or space - going on infinitely) and therefore we can think of Gaussian Processes as infinite dimensional extensions of the multivariate Gaussian distribution. But, in practice, we'll always deal with finite sized sets and we can treat them just as we would multivariate Gaussians:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,7 +66,11 @@ $$ f( \cdot ) \sim \mathcal{GP} ( m( \cdot ), k( \cdot, \cdot ) ) $$
 
 Just for preciseness, $$ m( \cdot ) $$ must be a real function and $$ k( \cdot, \cdot ) $$ must be a valid kernel function (which means being positive semidefinite) to have a Gaussian Process.
 
+<br>
+
 So, in the same way that we can sample a random vector from a multivariate Normal distribution, we can sample a random function from a Gaussian distribution. Note the difference here: a vector is finite-sized, but a function is a mapping with a potentially infinite size codomain. And just like the types of vectors that we sample from a multivariate Normal distribution are determined by its mean vector and covariance matrix, the types of functions we sample from a Gaussian Process are determined by the mean function $$ m( \cdot ) $$ and the covariance function $$ k( \cdot, \cdot ) .$$
+
+<br>
 
 The covariance function $$ k( \cdot, \cdot ) $$ is much more interesting than the mean function $$ m( \cdot ) .$$ It determines the shape of the function we sample. In this post, I’ll only look at one-dimensional Gaussian Processes with a zero mean function, i.e. $$ m(\cdot) = 0.$$ A non-zero mean function in the 1-dim case would just correspond to a vertical translation of the function. Below, we'll see 5 different kernels, and in each of the figures I show a graph with just one function and another graph showing twenty functions sampled from the GP. This isn't meant to be a thorough introduction to kernel function theory, but it'll hopefully give you a better understanding of the different types of kernel out there.
 
@@ -110,24 +118,30 @@ This isn't by any means an exhaustive introduction to Gaussian Processes. But, h
 <br>
 
 # Gaussian Process Regression
-In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. We'll assume, and this is important, that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) $$.
+In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. It's assumed that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) (this is important for the derivation)$$.
 
-The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f(\cdot) $$ was, then we wouldn’t need to do GP regression because we could just plug in our future $$x$$’s in $$ f(\cdot) $$ and get a perfect prediction. Unfortunately, we don’t know $$ f(\cdot) $$ . So, what we’ll do is sample some functions from a Gaussian Process and go from there.
+<br>
 
-In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice this is obviously not feasible. So, if we write down our model again
+The goal is to predict the $$y$$ values for future $$x$$’s. If we knew what the function $$ f(\cdot) $$ was, then we wouldn’t need to do GP regression because we could just plug in our future $$x$$’s in $$ f(\cdot) $$ and get our prediction. But, we don’t know $$ f(\cdot). $$ So, the idea is to sample functions from a Gaussian Process.
+
+<br>
+
+In theory, we can sample an infinite number of functions and choose only the ones that fit our data. But, in practice, this is obviously intractable. So, if we write down our model 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ y = f({\bf x}) + \epsilon $$ where $$ f( {\bf x}) \sim \mathcal{GP}(0, k(\cdot, \cdot)) $$ and $$ \epsilon \sim \mathcal{N}(0,\sigma^2), $$
 
-then we’ll notice that because $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), then $$y$$ must also be multivariate Gaussian distributed from the additive property of multivariate Gaussians, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2)! $$
+then we’ll notice that both $$ f({\bf x}) $$ is multivariate Gaussian distributed (from the definition of Gaussian Processes) and $$ \epsilon $$ is Gaussian distributed (by assumption), and therefore $$y$$ must also be multivariate Gaussian distributed from the additive property of multivariate Gaussians, i.e. $$ y \sim \mathcal{N}(0, k(\dot{},\dot{}) + \sigma^2)! $$
 
-If we have our labeled dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$ and we also have the unlabeled dataset $$ \{ {\bf x}_{i} |i=m+1,...,n\} $$
-that we want to predict $$y_*$$'s for, then a reasonable assumption is that both $$y$$ and $$y_*$$ come from the same distribution, namely
+<br>
+
+If we have our training dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$ and we also have the test dataset $$ \{ {\bf x}_{i} |i=m+1,...,n\}, $$
+for which we want to predict $$y_*$$, then a reasonable assumption is that both $$y$$ and $$y_*$$ come from the same distribution, namely
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ \begin{bmatrix} y \\ y_* \end{bmatrix} \sim \mathcal{N}( 0, \begin{bmatrix} k(x,x) + \sigma^2I && k(x,x_*) \\ k(x_*, x) && k(x_*, x_*) + \sigma^2 I \end{bmatrix} ) $$.
 
-where $$ x $$ denotes labeled data and $$ x_* $$ denotes unlabeled data. From the conditioning property of multivariate Gaussians, we can get the conditional distribution of $$ y_* $$ given $$ x $$ as
+where $$ x $$ denotes training data and $$ x_* $$ denotes test data. From the conditioning property of multivariate Gaussians, we can get the conditional distribution of $$ y_* $$ given $$ x $$ as
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ {\bf y}_*|X, {\bf y}, X_* \sim \mathcal{N}( \mu_*, \Sigma_*) $$
@@ -137,11 +151,15 @@ where
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 $$ \mu_* = k_*[k + \sigma_n^2 I]^{-1}{\bf y} $$ and $$ \Sigma_* = k_{**} - k_*[k + \sigma_n^2 I]^{-1} k_*. $$
 
-And that’s it. We can now get our estimate as $$ \mu_* $$ and our covariance as $$ \Sigma_* !$$ 
+And that’s it. We can now get our estimate $$ \mu_* $$ and our uncertainties $$ \Sigma_* !$$ 
+
+<br>
 
 So, essentially Gaussian Process regression is using the conditioning property of multivariate Gaussians. Of course, we can also incorporate our prior knowledge of the data by specifying the mean function $$ m(\cdot) $$ and the covariance function $$ k(\cdot, \cdot) . $$
 
-Below is the segment of code that’s calculates the estimate $$( \mu_*)$$ and the covariance $$ ( \Sigma_* ). $$ The algorithm I use is taken from Rasmussen et al, chapter 2, where instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix).
+<br>
+
+Below is the segment of Python code that’s calculates the estimate $$( \mu_*)$$ and the covariance $$ ( \Sigma_* ). $$ The algorithm I use is taken from Rasmussen et al, chapter 2, where instead of directly taking the inverse of the prediction kernel matrix, they calculate the Cholesky decomposition (i.e. the square root of the matrix).
 
 ```python
 n = len(X)
@@ -163,7 +181,11 @@ var_hat = covar_hat.diagonal()
 
 <br>
 
-To see a cool visual of Gaussian process regression (with a squared exponential kernel) in work, Figure 7 shows the evolution of the posterior distribution as more observations are made. Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, prediction changes to accomodate the new observation and the variance shrinks near the region at that point. Subsequent observations produce bigger changes and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction. 
+We did it! Okay, well, at least the math is done. But, it's always nice to see these types of things graphically. Figure 7 below shows Gaussian process regression with a squared exponential kernel in work. Specifically, the evolution of the posterior distribution as more observations are made. the evolution of posterior distribution on predictions as more observations are made.  
+
+<br>
+
+Before any observations, the mean prediction is zero and shaded area is 2 standard deviations from the mean (1.96 in this case). After the first observation is made, the prediction curve changes to accomodate the new observation and the variance shrinks near the region at that point. Subsequent observations produce bigger changes and smaller uncertainties. After ten observations are made, we can already see a pretty nice curve and prediction, with low uncertainties near regions with some points.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/evolution.png" width="1000">
@@ -172,7 +194,7 @@ _Figure 7_: These pictures shows how the posterior distribution of the predictio
 
 <br>
 
-Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 8 (below) starts it off with linear observations predicted using a GP with a linear kernel. This can also be seen as just doing Bayesian linear regression and shows how Gaussian Process Regression is a more general version of Bayesian linear regression.  
+Below are some figures where I play around with Gaussian Process Regression with different types of observations and different kernels. Figure 8 shows linear observations predicted using a GP with a linear kernel. This can also be interpreted as just doing Bayesian linear regression and shows how Gaussian Process Regression is more general than BLR.  
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_x_k2.png" width="600">
@@ -181,7 +203,7 @@ _Figure 8_: This plot shows GP regression with a linear kernel o observations co
 
 <br>
 
-In Figure 9 (below), I try to model noisy observations from the nonlinear function $$ f(x) = x \mathrm{sin} (x). $$ Obviously this is a bit more trick than a basic linear function, so I try a couple different kernels for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t really that impressive, but the variance from the symmetric kernel does seem to be little nicer looking that from the SE kernel. Although, I should warn you that I didn’t optimize any of the hyperparameters in this post, which would obviously affect the results.
+In Figure 9, I model $$ f(x) = x \mathrm{sin} (x) $$ with injected noise. Here I show a couple different kernels I tried for this: the squared exponential kernel and the symmetric kernel. In my opinion, the difference in performance between the two isn’t significant, but, in my opinion the symmetric one does look a bit nice. Although, disclosure, I didn’t optimize any of the hyperparameters in this post.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_xsinx.png" width="600">
@@ -190,7 +212,7 @@ _Figure 9_: Gaussian processes regression using the squared exponential kernel a
 
 <br>
 
-In Figure 10 (below), I use the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x). $$ It’s interesting that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. This makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond this range. This is prior knowledge about the dataset would be very helpful in choosing the proper kernel. However, in most problems, I think it’d be rare to have to make predictions far beyond the range of observations, so for the sake of most problems, the squared exponential kernel seems to work just fine.
+Figure 10 shows GPR with the squared exponential kernel and the periodic kernel to model noisy observations of $$ \mathrm{sin}(x). $$ I find it neat that beyond the range of observations $$(-5, +5)$$ the periodic kernel is able to follow $$ \mathrm{sin}(x) $$ much better. Which makes sense, because the squared exponential kernel has no reason to continue with the periodic pattern beyond the range where it sees no data. So, in most problems, I don't think this would be a huge deal breaker. It doesn't seem to make sense to have to make predictions on data that isn't closely related to your training set. So, the squared exponential kernel seems to the best all-purpose kernel for the types of data that I looked at.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/gaussian-process-regression/gpr_sinx.png" width="600">
@@ -200,9 +222,15 @@ _Figure 10_: Gaussian processes regression using the squared exponential kernel 
 <br>
 
 # Conclusion
-Gaussian Process regression is powerful all-purpose, general tool for regression problems. Although I didn't show it here, GPR in geostatistics (where it's 2-dimensional) is particularly cool visually. It makes me think of GPR as a tool to _fill in the blanks_ in between observations for continuous setting.
+Gaussian Process regression is powerful all-purpose, general tool for Bayesian regression. Although I didn't show it here, GPR in geostatistics (where it's 2-dimensional) is particularly cool visually. It makes me think of GPR as a tool to _fill in the blanks_ in between observations for continuous setting.
 
-Unfortunately, one of the reasons it not used as widely is because of the time complexity of inverting the covariance matrix, which takes $$O(n^3)$$ time. It doesn't seem like think this will be resolved anytime soon, so GPR may never reach the popularity of more efficient algorithms like linear regression or SVMs. But it's still cool to see what powerful methods are out there.
+<br>
+
+Unfortunately, one of the reasons it may not used as widely is because of the time complexity of inverting the covariance matrix, which takes $$O(n^3)$$ time. This is fine for small datasets, but we start looking at datasets on the order of millions of events, then this becomes ugly. It doesn't seem like this inverting problem will be resolved anytime soon, so GPR may never reach the popularity of more efficient algorithms like linear regression or SVMs or neural nets. Especially considering how data driven things are becoming now-a-days. But, it's still cool to see what powerful methods are out there.
+
+<br>
+
+_Aside - Reflection_: I think it was pretty cool to do this sort of introduction/explanation style post. My first try at something like this! If you see anything in this post that needs correcting, please let me know so I can fix it (contact info in _About_ page). Thanks for reading this also! Hopefully, this stuff makes a little more sense to you :)
 
 
 ### References
