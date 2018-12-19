@@ -12,7 +12,7 @@ Hello world!
 	
 <br><br>
 
-Welcome to my little blog, where I will write about general things in science that interest. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do with it what I want (whatever that is). 
+Welcome to my little blog, where I will write about general things in science that interest me. Sometimes I'll talk about my personal work, sometimes I'll try and explain a concept I find obscure, sometimes I'll talk about random stuff. It's my blog, I can do with it what I want (whatever that is). 
 
 <br><br>
 
