@@ -12,7 +12,7 @@ An introduction to gaussian process regression.
 
 In this post, I'm going to try and introduce, in a friendly manner, gaussian process regression (GPR). Gaussian process regression is a powerful all-purpose regression method. Some of its applications are in Brownian motion, which describes the motion of particle in a fluid, and in geostatistics, where we're given an incomplete set of 2D points that's supposed to span some space and GPR is used to estimate the gaps between our observations to fill in the rest of the terrain. 
 
-Some concepts concept you should know about are the multivariate Gaussian distribution and Bayesian regression. I’ll review them here, but it will only be brief.
+Some concepts you should know about are the multivariate Gaussian distribution and Bayesian regression. I’ll review them here, but it will only be brief.
 
 <br>
 
