@@ -16,9 +16,10 @@ An interesting development in machine learning in the past few years has been an
 The paper I talk about is [Recurrent Models of Visual Attention](https://arxiv.org/abs/1406.6247) by Mnih, Heess, Graves, and Kavukcuoglu (link to paper). This paper introduced a method for image classification that uses a sequence of “glimpses” on different regions of the image to predict the class. The authors took their inspiration from human perception, which focuses on selective regions instead of processing the entire scene at once (as a convolutional neural net would). This means that less computational resources (model parameters) are used since our model doesn’t have to process the entire image. Also, it means that the model can potentially ignore clutter and other irrelevant parts of the image for classification. 
 
 ## Model & Method
-<p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/model.png" width="600">
-</p>
+[<img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/model.png" 
+       width="800"
+       class="center">](https://arxiv.org/abs/1406.6247)
+<div align="center">
 _Figure 1_: 
 **A) Glimpse sensor** that takes an image $$x$$ and a location $$l_{t-1}$$ and returns glimpses $$\rho$$ of image at the given location. 
 **B) Glimpse network**: takes an image $$x$$ and a location $$l_{t-1}$$, receives the glimpses $$\rho$$ from the glimpse sensor, and then processes $$\rho$$ and the $$l_{t-1}$$ through fully connected layers to get a representation vector of the glimpses $$g_t$$.
