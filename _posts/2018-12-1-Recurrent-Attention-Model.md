@@ -62,6 +62,10 @@ My goal was to reproduce the results from this paper. Specifically, I wanted to 
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resA.png" width="600">
 </p>
 
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_glimpses.gif" width="600">
+</p>
+
 #### Cluttered Translated MNIST - Baseline (FC & Conv Net) and RAM
 The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, the translated such that the digit is placed at a random location, and then cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
 
