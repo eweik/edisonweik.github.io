@@ -19,7 +19,7 @@ The paper I talk about is [Recurrent Models of Visual Attention](https://arxiv.o
 [<img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/model.png" 
        width="800"
        class="center">](https://arxiv.org/abs/1406.6247)
-<div align="center">
+
 _Figure 1_: 
 **A) Glimpse sensor** that takes an image $$x$$ and a location $$l_{t-1}$$ and returns glimpses $$\rho$$ of image at the given location. 
 **B) Glimpse network**: takes an image $$x$$ and a location $$l_{t-1}$$, receives the glimpses $$\rho$$ from the glimpse sensor, and then processes $$\rho$$ and the $$l_{t-1}$$ through fully connected layers to get a representation vector of the glimpses $$g_t$$.
