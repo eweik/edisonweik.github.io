@@ -226,7 +226,7 @@ Gaussian Process regression is powerful all-purpose, general tool for Bayesian r
 
 <br>
 
-Unfortunately, one of the reasons it may not used as widely is because of the time complexity of inverting the covariance matrix, which takes $$O(n^3)$$ time. This is fine for small datasets, but we start looking at datasets on the order of millions of events, then this becomes ugly. It doesn't seem like this inverting problem will be resolved anytime soon, so GPR may never reach the popularity of more efficient algorithms like linear regression or SVMs or neural nets. Especially considering how data driven things are becoming now-a-days. But, it's still cool to see what powerful methods are out there.
+The time complexity of GPR is $$O(n^3)$$ based on the implementation above (this comes from inverting the covariance matrix). This is fine for small datasets, but we start looking at datasets on the order of millions of events, then this becomes ugly. There are faster methods for doing GPR, but they are beyond the scope of this post (you can find a textbook on this stuff in the reference pages below).
 
 <br>
 
