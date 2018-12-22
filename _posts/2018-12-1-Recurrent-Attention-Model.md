@@ -63,7 +63,7 @@ My goal was to reproduce the results from this paper. Specifically, I wanted to 
 </p>
 
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_glimpses.gif" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_glimpses.gif" width="800">
 </p>
 
 #### Cluttered Translated MNIST - Baseline (FC & Conv Net) and RAM
@@ -78,6 +78,11 @@ _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST image
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resB.png" width="600">
 </p>
+
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_cl_tr_glimpses.gif" width="800">
+</p>
+
 <br>
 
 ##### Thoughts on performance
