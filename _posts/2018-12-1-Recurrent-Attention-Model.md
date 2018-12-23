@@ -65,6 +65,7 @@ The MNIST dataset consists of 28 by 28 pixels of handwritten letters from 0 to 9
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table1.png" width="600">
+       <br>
     Table 1
 </p>
 <br>
@@ -84,6 +85,7 @@ _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST image
 <br>
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table2.png" width="600">
+       <br>
     Table 2
 </p>
 <br>
@@ -108,6 +110,7 @@ Back to the original MNIST. Unlike myself, the authors were able to train a RAM 
 <br>
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table3.png" width="600">
+       <br>
     Table 3
 </p>
 <br>
