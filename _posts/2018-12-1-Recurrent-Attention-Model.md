@@ -28,18 +28,18 @@ _Figure 1_:
 <br>
 
 #### Architecture of the model
-Figure 1 shows the basic framework of the RAM (Recurrent Attention Model, what they call it) they used, which is composed of 5 smaller neural networks:
+Figure 1 shows the basic framework of the RAM (Recurrent Attention Model, what they call it), which is composed of 5 smaller neural networks:
 * Glimpse sensor
 * Glimpse network
 * Core Recurrent Neural Network (RNN) network
 * Action network
 * Location network
  
-Essentially, they use an RNN network that takes in an image, sequentially gathers information about the image using glimpses from different parts of the image, and then classifies the image. 
+Essentially, they use an RNN network that takes in an image, sequentially gathers information about the image using glimpses from different parts of the image, and then classifies the image using the information. 
 
 #### Training Procedure
 
-The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = \text{arg max}_\theta E_{p(s_{1:T} ; \theta)} \lbrack \sum^T_{t=1} r_t \rbrack. $$ Here $$s_{1:t} = x_1, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible interaction sequences. 
+The objective in this problem is to maximize the expected total reward, i.e. find $$ \theta^* = \text{arg max}_\theta E_{p(s_{1:T} ; \theta)} \lbrack \sum^T_{t=1} r_t \rbrack. $$ Here $$s_{1:t} = x_1, l_1, a_1, …, x_t, l_t, a_t$$ indicates that the distribution is over the possible glimpse sequences. 
 
 Apparently, this turns out to be quite difficult. Choosing the sequence of locations to glimpse is not some function that we can backprop on (if it is, it is high dimensional and quite complex and may change over time). So, Mnih et. al. used reinforcement learning to train a policy $$\pi$$ to choose actions given interactions. The policy in this case is defined by the RNN above: $$\pi ((l_t, a_t) \vert s_{1:t}; \theta)$$. They trained to policy using the policy gradient algorithm (aka REINFORCE), which is just gradient ascent on the policy parameters. 
 
@@ -47,20 +47,27 @@ $$\nabla_\theta J(\theta) = \sum^T_{t=1} E_{p(s_{1:T};\theta)} \lbrack \nabla_\t
 
 $$ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \approx \dfrac{1}{M} \sum^M_{i=1} \sum^T_{t=1} \lbrack \nabla_\theta \log \pi ( a^i_t | s^i_{1:T} ; \theta ) (R^i - b_t) \rbrack $$
 
-One note: the $$b_t$$ term is the baseline reward. It’s generally added in policy gradient to reduce the variance of the gradient, which helps in training policies. 
+The $$b_t$$ term is the baseline reward. It’s generally added in policy gradient to reduce the variance of the gradient, which helps in training policies. 
 
-For the classification problem (last action), they  used a cross entropy loss function and backpropped the loss through the differentiable parts of the network. The location network (which decided where the next glimpse should be) was trained via policy gradients. 
+For the classification problem (last action), they used a cross entropy loss function and backpropped the loss through the differentiable parts of the network. The location network (which decided where the next glimpse should be) was trained via policy gradients. 
 
 My descriptions in this section are brief overviews of the entire model and method. See the paper if you’re interested in other details such as learning rates, the number of hidden units, etc.
 
 <br>
 
 ## My Results
-My goal was to reproduce the results from this paper. Specifically, I wanted to reproduce the baseline and best results with the MNIST dataset and the cluttered translated MNIST dataset. This involved writing the code that created the network and training the network. My code is available on my GitHub and I trained it on a GPU from Google Colab. 
+My goal was to reproduce the results from this paper. Specifically, I wanted to reproduce the baseline and best results with the MNIST dataset and the cluttered translated MNIST dataset. This involved writing the code that created the network and training the network. I trained it on a GPU from Google Colab; my code is available on my [GitHub page](https://github.com/eweik).
+
+For each of the datasets, I show a table with the results of the authors and my results and include a gif of the sequence of glimpses for some images.
 
 #### MNIST results - Baseline (FC & Conv Net) and RAM 
+The MNIST dataset consists of 28 by 28 pixels of handwritten letters from 0 to 9. 
+
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resA.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table1.png" width="600">
+</p>
+<p align="center">
+    Table 1
 </p>
 
 <p align="center">
@@ -68,7 +75,7 @@ My goal was to reproduce the results from this paper. Specifically, I wanted to 
 </p>
 
 #### Cluttered Translated MNIST - Baseline (FC & Conv Net) and RAM
-The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, the translated such that the digit is placed at a random location, and then cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
+The cluttered translated MNIST dataset is a customized dataset where an original 28 by 28 MNIST image is padded to size 60x60, then translated such that the digit is placed at a random location, and finally cluttered by adding 8 by 8 random sub patches from other random MNIST digits to random locations of the image. Example cluttered translated MNIST images can be seen in figure 2.
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/cluttered_translated_MNIST.png" width="600">
@@ -77,12 +84,16 @@ _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST image
 
 <br>
 <p align="center">
-    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/resB.png" width="600">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table2.png" width="600">
+</p>
+<p align="center">
+    Table 2
 </p>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_cl_tr_glimpses.gif" width="800">
 </p>
+For the cluttered translated MNIST RAM gif above, I only show the glimpses from the central/smallest glimpse. In the paper, the authors use 3 different glimpse scales for each glimpse in the sequence (see paper for more details).
 
 <br>
 
