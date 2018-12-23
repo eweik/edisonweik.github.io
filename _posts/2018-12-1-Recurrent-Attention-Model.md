@@ -65,10 +65,9 @@ The MNIST dataset consists of 28 by 28 pixels of handwritten letters from 0 to 9
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table1.png" width="600">
-</p>
-<p align="center">
     Table 1
 </p>
+<br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_glimpses.gif" width="800">
@@ -85,10 +84,9 @@ _Figure 2_: Pictures and labels of the 60 by 60 cluttered translated MNIST image
 <br>
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table2.png" width="600">
-</p>
-<p align="center">
     Table 2
 </p>
+<br>
 
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/mnist_cl_tr_glimpses.gif" width="800">
@@ -98,17 +96,23 @@ For the cluttered translated MNIST RAM gif above, I only show the glimpses from 
 <br>
 
 ##### Thoughts on performance
-Although the performance of my networks were pretty close to those of the authors, I admit I was a bit disappointed that my results didn’t exactly quite match theirs. I believe I was faithful to the procedures and design described in the paper and trained my networks for quite a while (i.e. until the validation accuracy didn’t improve for 25 epochs). 
+Unfortunately, my accuracy did not match Mnih et al’s in the normal MNIST. To me, this makes sense because the RAM model as the author’s describe it seems to consist entirely of fully connected layers, except without the ability to observe the entire image (which the fully connected baseline does). So, at least to me, I wouldn’t necessarily expect it to outperform the fully connected baseline, much less the convolutional baseline.
 
-Some reasons for my performance that I can think of that include a lack of an decent parameter search for the learning rate and location network standard deviation. In training, I only tried a couple of different values out, which is obviously not ideal. Upon reflection, I think it’s fair to assume that a small increase an error can be attributed to non-optimal parameters. I’ll probably try and train this network a few more times with different param values and update this post as it goes along.
+In the case of the cluttered translated MNIST, it’s nice to see that my networks performed on par with the original authors’. Here, I did expect the RAM model to outperform the baselines because of the extra noise that would throw off the baseline networks. Ideally, the RAM would learn to focus on just the digits and ignore the noise, and the accuracy of the model suggests that it’s able to do something similar to this. 
 
-I'm not surprised that in the plain MNIST, the convolutional net outperformed RAM. This makes sense since it has access to nearly the same information. I say "nearly" and not "more" because the kernel size (10 by 10) and stride length (5) are pretty big whereas the RAM glimpse size (8 by 8) is a bit more fine grained (although not convolutional). This isn't a big deal, but just a small remark.
+Back to the original MNIST. Unlike myself, the authors were able to train a RAM to outperform the baselines. I personally believe this may be an artifact of optimization. Training policy gradient is not fun. Tuning the hyperparameters and scheduling the decay of the learning rate were very long processes for this model and the performance was very sensitive these things. Although I did try quite a few different hyperparameters for each model, I was not rigorous. I’m sure if I spent more time trying out different learning rates and location standard deviations, then I could’ve squeezed out perhaps 1% more accuracy. But, in the case of the original MNIST model, I still don’t think it would’ve outperformed a good baseline.
 
-It’s cool to see the performance of RAM on the cluttered translated MNIST in relation to the baselines. It’s not a huge surprise though considering the types of baselines used - 2 layer conv nets with large kernels and strides. I’m curious to see how a better network, perhaps a pretrained like VGG or ResNet, might perform.
 
 ##### Thoughts on number of parameters
 Looking at the number of parameters it didn’t seem like there really was a huge difference. In fact, based on the descriptions in the paper, the conv net baseline actually had the least amount of parameters. Of course, a larger baseline would be different, but I only considered what was in the paper. 
 
+<br>
+
+<br>
+<p align="center">
+    <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table3.png" width="600">
+    Table 3
+</p>
 <br>
 
 ## Concluding Remarks
