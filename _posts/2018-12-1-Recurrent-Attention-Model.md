@@ -104,15 +104,18 @@ Back to the original MNIST. Unlike myself, the authors were able to train a RAM 
 
 
 ##### Thoughts on number of parameters
-Looking at the number of parameters it didn’t seem like there really was a huge difference. In fact, based on the descriptions in the paper, the conv net baseline actually had the least amount of parameters. Of course, a larger baseline would be different, but I only considered what was in the paper. 
-
-<br>
 
 <br>
 <p align="center">
     <img src="//raw.githubusercontent.com/eweik/eweik.github.io/master/images/recurrent_attention_model/table3.png" width="600">
     Table 3
 </p>
+<br>
+
+Looking at the number of parameters it didn’t seem like there really was a huge difference. In fact, based on my implementations, the conv net baseline actually had the least amount of parameters. 
+
+However, I get the sentiment the authors are giving. While the RAM may have had more parameters than the conv baseline, it also scaled much better with the input size than the conv baseline did. 
+
 <br>
 
 ## Concluding Remarks
