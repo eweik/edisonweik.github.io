@@ -118,7 +118,7 @@ This isn't by any means an exhaustive introduction to Gaussian Processes. But, h
 <br>
 
 # Gaussian Process Regression
-In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. It's assumed that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2) (this is important for the derivation)$$.
+In a typical regression problem we are given a dataset $$ \{({\bf x}_{i} , y_{i}) |i=1,...,m\} $$, where $$ y = f({\bf x}) + \epsilon $$ is a noisy observation of the underlying function $$ f({\bf x}) $$. It's assumed that the noise is $$ \epsilon \sim \mathcal{N}(0,\sigma^2)$$  (this is important for the derivation).
 
 <br>
 
